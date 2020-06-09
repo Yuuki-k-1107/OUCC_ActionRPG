@@ -1,4 +1,4 @@
-# This .gitignore file should be placed at the root of your Unity project directory
+﻿# This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
@@ -110,3 +110,4 @@ Thumbs.db
 
 #python bytecode cache, for some plugins.
 *.pyc
+#シロによるテストでーす

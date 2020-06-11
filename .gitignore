@@ -112,3 +112,8 @@ Thumbs.db
 *.pyc
 #シロによるテストでーす
 #114514 U's test description
+
+
+#オリジナル
+*.dwlt
+/expandedItems

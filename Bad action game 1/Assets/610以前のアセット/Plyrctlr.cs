@@ -10,12 +10,16 @@ public class Plyrctlr : MonoBehaviour
     float liftForce = 500.0f;
     float moveForce = 25.0f;
     float limitspeed = 5.0f;
+    public static int curHP;
+    public static int maxHP;
     public static Vector3 respawn;
 
     // Start is called before the first frame update
     void Start()
     {
         this.Rig2D = GetComponent<Rigidbody2D>();
+        maxHP = 100;
+        curHP = maxHP;
         //this.director = GameObject.Find("kantoku");
     }
     void OnTriggerEnter2D(Collider2D other)
@@ -67,7 +71,12 @@ public class Plyrctlr : MonoBehaviour
         {
             //this.director.GetComponent<UI>().LossLife();
             this.Rig2D.velocity = new Vector2(0, 0);
+            curHP -= 10;
             transform.position = respawn;
+        }
+
+        if (curHP <= 0) {
+            Debug.Log("ゲームオーバー");
         }
     }
 }

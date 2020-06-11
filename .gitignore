@@ -116,4 +116,5 @@ Thumbs.db
 
 #オリジナル
 *.dwlt
+/CurrentLayout.dwlt
 /expandedItems

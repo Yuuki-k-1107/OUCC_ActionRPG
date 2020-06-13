@@ -13,8 +13,12 @@ public class Plyrctlr : MonoBehaviour
     float limitspeed = 5.0f;
     public static int curHP;
     public static int maxHP;
+    public static int Level = 1;
+    public static int EXP = 0;
     public static bool isJumping;
     public static Vector3 respawn;
+
+    private int wmode;
 
     // Start is called before the first frame update
     void Start()
@@ -22,17 +26,19 @@ public class Plyrctlr : MonoBehaviour
         this.Rig2D = GetComponent<Rigidbody2D>();
         maxHP = 100;
         curHP = maxHP;
+        wmode = 1;
         respawn = new Vector3(-5, 0, 0);
         this.anm1 = GetComponent<Animator>();
         //this.director = GameObject.Find("kantoku");
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-       /* if (other.gameObject.tag == "credit")
+       if (other.gameObject.tag == "Enemy")
         {
-            this.director.GetComponent<UI>().GetCredit();
-            Destroy(other.gameObject);
-        }*/
+            curHP -= 8;
+            EXP += 3;
+            this.Rig2D.AddForce(transform.right * 5.0f);
+        }
     }
 
     void OnTriggerStay2D(Collider2D other2)
@@ -83,6 +89,23 @@ public class Plyrctlr : MonoBehaviour
             transform.position = respawn;
         }
 
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            //ここに武器発射を割り当て
+            Debug.Log(wmode);
+        }
+
+        if (Input.GetKeyDown(KeyCode.X)) {
+            if(this.wmode == 1)
+            {
+                wmode = 2;
+            }
+            else
+            {
+                wmode = 1;
+            }
+        }
+
         if(this.Rig2D.velocity.x * localscale.x < 0 )
         {
             localscale.x *= -1.0f;
@@ -91,6 +114,13 @@ public class Plyrctlr : MonoBehaviour
 
         if (curHP <= 0) {
             Debug.Log("ゲームオーバー");
+        }
+
+        if (EXP >= 10)
+        {
+            Level++;
+            maxHP += 50;
+            EXP = 0;
         }
     }
 }

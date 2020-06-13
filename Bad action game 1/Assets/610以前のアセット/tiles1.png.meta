@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: 314ba7401cb3ab844b6d60161c2dbeed
+=======
+guid: 65adf0305f934394283f75ec6ac414a8
+>>>>>>> Stashed changes
 TextureImporter:
   fileIDToRecycleName:
     21300000: tiles1_0

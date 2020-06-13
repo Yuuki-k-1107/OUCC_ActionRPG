@@ -4,6 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Ground
+  - Wall
   - tile1
   - Enemy
   layers:
@@ -54,4 +56,10 @@ TagManager:
     locked: 0
   - name: Front
     uniqueID: 1378185139
+    locked: 0
+  - name: UI1
+    uniqueID: 2406987259
+    locked: 0
+  - name: UI2
+    uniqueID: 1744116439
     locked: 0

@@ -14,7 +14,8 @@ public class Plyrctlr : MonoBehaviour
     public static int curHP;
     public static int maxHP;
     public static int Level = 1;
-    public static int EXP = 0;
+    public static int curEXP = 0;
+    public static int[] needEXP = new int[11];
     public static bool isJumping;
     public static Vector3 respawn;
 
@@ -30,13 +31,24 @@ public class Plyrctlr : MonoBehaviour
         respawn = new Vector3(-5, 0, 0);
         this.anm1 = GetComponent<Animator>();
         //this.director = GameObject.Find("kantoku");
+        needEXP[0] = 0;
+        needEXP[1] = 10;
+        needEXP[2] = 30;
+        needEXP[3] = 60;
+        needEXP[4] = 100;
+        needEXP[5] = 150;
+        needEXP[6] = 250;
+        needEXP[7] = 400;
+        needEXP[8] = 700;
+        needEXP[9] = 1000;
+        needEXP[10] = 1500;
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-       if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy")
         {
             curHP -= 8;
-            EXP += 3;
+            curEXP += 3;
             this.Rig2D.AddForce(transform.right * 5.0f);
         }
     }
@@ -95,8 +107,9 @@ public class Plyrctlr : MonoBehaviour
             Debug.Log(wmode);
         }
 
-        if (Input.GetKeyDown(KeyCode.X)) {
-            if(this.wmode == 1)
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            if (this.wmode == 1)
             {
                 wmode = 2;
             }
@@ -106,21 +119,30 @@ public class Plyrctlr : MonoBehaviour
             }
         }
 
-        if(this.Rig2D.velocity.x * localscale.x < 0 )
+        if (this.Rig2D.velocity.x * localscale.x < 0)
         {
             localscale.x *= -1.0f;
             transform.localScale = localscale;
         }
 
-        if (curHP <= 0) {
+        if (curHP <= 0)
+        {
             Debug.Log("ゲームオーバー");
         }
 
-        if (EXP >= 10)
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Level++;
-            maxHP += 50;
-            EXP = 0;
+            curEXP++;
+        }
+
+        if (Level <= 10)
+        {
+            if (curEXP >= needEXP[Level])
+            {
+                Level++;
+                maxHP += 50;
+                curHP = maxHP; //レベルアップ時HP全快
+            }
         }
     }
 }

@@ -4,7 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - PlayerShot
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -41,16 +41,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Background1
-    uniqueID: 2035179569
-    locked: 0
-  - name: Background2
-    uniqueID: 2875821561
-    locked: 0
-  - name: Ashiba
-    uniqueID: 668872831
-    locked: 0
-  - name: Front
-    uniqueID: 1378185139
     locked: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerShotGun : MonoBehaviour
 {
     [Header("弾丸")] public GameObject bulObj;//bullet object
-    [Header("発射ボタン")]public OnlyShotPlayer gunbut;//gun button
+    [Header("発射ボタン")] public OnlyShotPlayer gunbut;//gun button
     [Header("発射アニメ")] public string stanim;//shoot anime
     private Animator anim = null;
     private Rigidbody2D rb = null;
@@ -19,7 +19,7 @@ public class PlayerShotGun : MonoBehaviour
     void Update()
     {
         shot = gunbut.Gunbut();
-        if(shot)
+        if (shot)
         {
             Debug.Log("shot");
             GameObject bul = Instantiate(bulObj);

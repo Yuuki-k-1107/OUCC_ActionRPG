@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class zakomove : MonoBehaviour {
-    #region//インスペクター
+    #region//インスペクターで設定する
     [Header("移動速度")] public float speed;
     [Header("重力")] public float gravity;
     [Header("画面外でも行動する")] public bool nonVisibleAct;
+    [Header("接触判定")] public EnemyCollisionCheck checkCollision;
     #endregion
 
-    #region//private変数
+    #region//プライベート変数
     private Rigidbody2D rb = null;
     private SpriteRenderer sr = null;
     private Animator anim = null;
@@ -19,6 +20,7 @@ public class zakomove : MonoBehaviour {
     private bool isDead = false;
     private float deadTimer = 0.0f;
     #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,13 +31,16 @@ public class zakomove : MonoBehaviour {
         col = GetComponent<BoxCollider2D>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (!oc.playerStepOn)
         {
             if (sr.isVisible || nonVisibleAct)
             {
+                if (checkCollision.isOn)
+                {
+                    rightTleftF = !rightTleftF;
+                }
                 int xVector = -1;
                 if (rightTleftF)
                 {
@@ -70,13 +75,12 @@ public class zakomove : MonoBehaviour {
                 {
                     Destroy(this.gameObject);
                 }
-            
-        
-            else
-            {
-                deadTimer += Time.deltaTime;
+                else
+                {
+                    deadTimer += Time.deltaTime;
+                }
             }
-           }
+        }
     }
 }
-}
+

@@ -29,6 +29,7 @@ public class NewShotGun : MonoBehaviour
             if (ready)
             {
                 shot = true;
+                ready = false;
                 //            stpos = stmrk.transform.position;//マーカーの位置を取得
                 GameObject bullets = Instantiate(bulObj, stmrk.transform.position, Quaternion.identity) as GameObject;//マーカーと同じ位置に弾を生成
             }

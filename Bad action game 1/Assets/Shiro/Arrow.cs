@@ -50,7 +50,7 @@ public class Arrow : MonoBehaviour
                 blspd = -blspd;
             }
             mark = true; Vector3
-            force = new Vector3(blspd, 2.0f, 0.0f);    // 力を設定
+            force = new Vector3(blspd, 3.0f, 0.0f);    // 力を設定
             rb.AddForce(force, ForceMode2D.Impulse);  // 力を加える
         }
         float d = Vector3.Distance(transform.position, defaultPos);

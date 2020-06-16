@@ -30,6 +30,11 @@ public class Arrow : MonoBehaviour
             Debug.Log("設定が足りません");
             Destroy(this.gameObject);
         }
+
+    }
+
+    void FixedUpdate()
+    {
         if (mark == false)
         {
             defaultPos = this.transform.position;
@@ -44,12 +49,10 @@ public class Arrow : MonoBehaviour
                 this.transform.rotation = new Quaternion(0, 180, 0, 0);
                 blspd = -blspd;
             }
-            mark = true;
+            mark = true; Vector3
+            force = new Vector3(blspd, 2.0f, 0.0f);    // 力を設定
+            rb.AddForce(force, ForceMode2D.Impulse);  // 力を加える
         }
-    }
-
-    void FixedUpdate()
-    {
         float d = Vector3.Distance(transform.position, defaultPos);
         //最大移動距離を超えている
         if (d > blrng)
@@ -58,7 +61,7 @@ public class Arrow : MonoBehaviour
         }
         else
         {
-            rb.velocity = new Vector3(blspd, 0, 0);
+//            rb.velocity = new Vector3(blspd, 0, 0);
         }
     }
 

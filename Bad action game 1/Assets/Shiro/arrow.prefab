@@ -107,7 +107,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8981239517265870560}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -132,8 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b71e60ed95264c144ac8e7b1054eb3a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blspd: 3
-  blrng: 10
+  blspd: 15
+  blrng: 100
   str: arpg-player
 --- !u!95 &8396702737157466082
 Animator:

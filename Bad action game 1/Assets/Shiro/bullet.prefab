@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blspd: 30
-  blrng: 100
+  blrng: 10
   str: arpg-player
 --- !u!50 &3210991879228687007
 Rigidbody2D:

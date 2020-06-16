@@ -2677,12 +2677,13 @@ GameObject:
   - component: {fileID: 205472447}
   - component: {fileID: 205472446}
   - component: {fileID: 205472445}
+  - component: {fileID: 205472448}
+  - component: {fileID: 205472450}
   - component: {fileID: 205472444}
   - component: {fileID: 205472443}
   - component: {fileID: 205472442}
   - component: {fileID: 205472441}
   - component: {fileID: 205472440}
-  - component: {fileID: 205472450}
   m_Layer: 0
   m_Name: arpg-player
   m_TagString: Player
@@ -2865,6 +2866,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &205472448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205472439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00fb787691147d4d8f6a4c32311fc22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cltm: 3
+  bulObj: {fileID: 8981239517265870560, guid: 60670a833d876a34b806963571fea72b, type: 3}
+  stanim: ShotBow
+  stmrk: {fileID: 1753370311}
 --- !u!114 &205472450
 MonoBehaviour:
   m_ObjectHideFlags: 0

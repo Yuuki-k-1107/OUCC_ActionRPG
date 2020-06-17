@@ -2878,7 +2878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00fb787691147d4d8f6a4c32311fc22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cltm: 0.5
+  cltm: 1
   bulObj: {fileID: 8981239517265870560, guid: 60670a833d876a34b806963571fea72b, type: 3}
   stanim: ShotBow
   stmrk: {fileID: 1753370311}
@@ -2894,7 +2894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6082ce39238bf324f8a56ee1275f7c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cltm: 0.2
+  cltm: 1
   bulObj: {fileID: 3210991879228686993, guid: 91d1079ac6778514db1a9d0738d70c65, type: 3}
   stanim: ShotGun
   stmrk: {fileID: 1753370311}

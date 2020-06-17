@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - tile1
   - Enemy
+  - PlayerShot
   layers:
   - Default
   - TransparentFX

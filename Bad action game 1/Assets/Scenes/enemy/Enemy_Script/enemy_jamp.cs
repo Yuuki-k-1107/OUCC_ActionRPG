@@ -6,7 +6,8 @@ public class enemy_jamp : MonoBehaviour
 {
     
     public float jumpPower;
-    public float jumptimer = 0.0f;
+    public float limit;
+    private float jumptimer = 0.0f;
     private Rigidbody2D rb = null;
 
 
@@ -19,10 +20,10 @@ public class enemy_jamp : MonoBehaviour
     void Update()
     {
         jumptimer += 0.1f;
-        if (jumptimer > 2.0f)
+        if (jumptimer > limit)
         {
             
-            rb.velocity = new Vector2(0, jumpPower);
+            rb.AddForce(Vector2.up*jumpPower);
             jumptimer = 0.0f;
         }
         

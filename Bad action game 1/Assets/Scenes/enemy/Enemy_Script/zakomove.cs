@@ -8,6 +8,7 @@ public class zakomove : MonoBehaviour {
     [Header("重力")] public float gravity;
     [Header("画面外でも行動する")] public bool nonVisibleAct;
     [Header("接触判定")] public EnemyCollisionCheck checkCollision;
+    [Header("敵のサイズ")] public float es;
     #endregion
 
     #region//プライベート変数
@@ -33,28 +34,7 @@ public class zakomove : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if (oc.playerStepOn)
-        {
-            if (!isDead)
-            {
-                anim.Play("dead");
-                isDead = true;
-                col.enabled = false;
-            }
-            else
-            {
-
-                if (deadTimer > 3.0f)
-                {
-                    Destroy(this.gameObject);
-                }
-                else
-                {
-                    deadTimer += Time.deltaTime;
-                }
-            }
-        }
-        else
+        if (!oc.playerStepOn)
         {
             if (sr.isVisible || nonVisibleAct)
             {
@@ -66,11 +46,11 @@ public class zakomove : MonoBehaviour {
                 if (rightTleftF)
                 {
                     xVector = 1;
-                    transform.localScale = new Vector3(-1, 1, 1);
+                    transform.localScale = new Vector3(-es, es, 1);
                 }
                 else
                 {
-                    transform.localScale = new Vector3(1, 1, 1);
+                    transform.localScale = new Vector3(es, es, 1);
                 }
                 rb.velocity = new Vector2(xVector * speed, -gravity);
                 anim.SetBool("walk", true);
@@ -79,9 +59,30 @@ public class zakomove : MonoBehaviour {
             {
                 anim.SetBool("walk", false);
             }
-
         }
+        else
+        {
+            if (!isDead)
+            {
+                anim.Play("dead");
+                rb.velocity = new Vector2(0, -gravity);
+                isDead = true;
+                col.enabled = false;
+            }
+            else
+            {
+                transform.Rotate(new Vector3(0, 0, 5));
+                if (deadTimer > 3.0f)
+                {
+                    Destroy(this.gameObject);
+                }
+                else
+                {
+                    deadTimer += Time.deltaTime;
+                }
+            }
         }
     }
+}
 
 

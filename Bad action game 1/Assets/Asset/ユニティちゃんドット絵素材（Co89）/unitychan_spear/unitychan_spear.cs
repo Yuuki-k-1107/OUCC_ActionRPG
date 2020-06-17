@@ -5,10 +5,16 @@ using UnityEngine;
 public class unitychan_spear : MonoBehaviour
 {
     private Animator anim;
+
+    private Collider2D spearCollider;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+
+        spearCollider = GameObject.Find("unitychan_spear1").GetComponent<BoxCollider2D>();
+
         
     }
 
@@ -17,7 +23,15 @@ public class unitychan_spear : MonoBehaviour
     {
         if (Input.GetButtonDown("CloseAttack"))
         {
-            anim.SetBool("CloseAttack", true);
+            anim.SetBool("spear", true);
+
+            spearCollider.enabled = true;
+
+            Invoke("ColliderReset", 0.5f);
+        }
+        else if (Input.GetButtonUp("CloseAttack"))
+        {
+            anim.SetBool("spear", false);
         }
         
     }

@@ -114,8 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb2e0a163bfd397468e0f59bd9dbf1e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blspd: 30
-  blrng: 10
+  blspd: 20
+  blrng: 20
   str: arpg-player
 --- !u!50 &3210991879228687007
 Rigidbody2D:

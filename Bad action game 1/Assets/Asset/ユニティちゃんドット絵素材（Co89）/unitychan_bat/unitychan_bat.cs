@@ -13,6 +13,9 @@ public class unitychan_bat : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
+        //子オブジェクト"bat_collider"を取得
+        GameObject batcollider = transform.Find("bat_collider").gameObject;
+
         batCollider = GameObject.Find("unitychan_bat1").GetComponent<BoxCollider2D>();
 
 
@@ -21,7 +24,7 @@ public class unitychan_bat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("CloseAttack"))
+        if (Input.GetButtonDown("CloseAttack_bat"))
         {
             anim.SetBool("bat", true);
 
@@ -29,7 +32,7 @@ public class unitychan_bat : MonoBehaviour
 
             Invoke("ColliderReset", 0.5f);
         }
-        else if (Input.GetButtonUp("CloseAttack"))
+        else if (Input.GetButtonUp("CloseAttack_bat"))
         {
             anim.SetBool("bat", false);
         }

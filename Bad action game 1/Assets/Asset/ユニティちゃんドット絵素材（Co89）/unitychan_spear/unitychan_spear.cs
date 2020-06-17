@@ -11,9 +11,14 @@ public class unitychan_spear : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         anim = GetComponent<Animator>();
 
-        spearCollider = GameObject.Find("unitychan_spear1").GetComponent<BoxCollider2D>();
+        //子オブジェクト"spear_collider"を取得
+        GameObject spearcollider = transform.Find("spear_collider").gameObject;
+
+        //"spear_collider"からBoxCollider2Dを取得
+        spearCollider = spearcollider.GetComponent<BoxCollider2D>();
 
         
     }
@@ -21,7 +26,7 @@ public class unitychan_spear : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("CloseAttack"))
+        if (Input.GetButtonDown("CloseAttack_spear"))
         {
             anim.SetBool("spear", true);
 
@@ -29,7 +34,7 @@ public class unitychan_spear : MonoBehaviour
 
             Invoke("ColliderReset", 0.5f);
         }
-        else if (Input.GetButtonUp("CloseAttack"))
+        else if (Input.GetButtonUp("CloseAttack_spear"))
         {
             anim.SetBool("spear", false);
         }

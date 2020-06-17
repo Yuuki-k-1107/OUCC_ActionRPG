@@ -33,7 +33,28 @@ public class zakomove : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if (!oc.playerStepOn)
+        if (oc.playerStepOn)
+        {
+            if (!isDead)
+            {
+                anim.Play("dead");
+                isDead = true;
+                col.enabled = false;
+            }
+            else
+            {
+
+                if (deadTimer > 3.0f)
+                {
+                    Destroy(this.gameObject);
+                }
+                else
+                {
+                    deadTimer += Time.deltaTime;
+                }
+            }
+        }
+        else
         {
             if (sr.isVisible || nonVisibleAct)
             {
@@ -58,29 +79,9 @@ public class zakomove : MonoBehaviour {
             {
                 anim.SetBool("walk", false);
             }
+
         }
-        else
-        {
-            if (!isDead)
-            {
-                anim.Play("dead");
-                rb.velocity = new Vector2(0, -gravity);
-                isDead = true;
-                col.enabled = false;
-            }
-            else
-            {
-                transform.Rotate(new Vector3(0, 0, 5));
-                if (deadTimer > 3.0f)
-                {
-                    Destroy(this.gameObject);
-                }
-                else
-                {
-                    deadTimer += Time.deltaTime;
-                }
-            }
         }
     }
-}
+
 

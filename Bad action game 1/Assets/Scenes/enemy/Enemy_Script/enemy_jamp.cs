@@ -6,19 +6,23 @@ public class enemy_jamp : MonoBehaviour
 {
     
     public float jumpPower;
-    private float jumptimer = 0.0f;
-    
+    public float jumptimer = 0.0f;
+    private Rigidbody2D rb = null;
 
-    
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        jumptimer += Time.deltaTime;
+        jumptimer += 0.1f;
         if (jumptimer > 2.0f)
         {
             
-            transform.Translate(Vector3.up * jumpPower);
+            rb.velocity = new Vector2(0, jumpPower);
             jumptimer = 0.0f;
         }
         

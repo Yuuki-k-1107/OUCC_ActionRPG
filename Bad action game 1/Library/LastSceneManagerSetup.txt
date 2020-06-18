@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Shiro/StageDemoShiro.unity
+- path: Assets/Scenes/SampleCloseAttack.unity
   isLoaded: 1
   isActive: 1

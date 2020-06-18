@@ -67,6 +67,10 @@ public class NewBullet : MonoBehaviour
         if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "PlayerShot")
         {
             anim.SetBool("burst", true);
+            {
+                zakoData.EnemHP -= (4 + Plyrctlr.Level);
+                Debug.Log("Hit");
+            }
             Destroy(this.gameObject);
         }
     }

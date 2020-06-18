@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8606205309703239095}
   - component: {fileID: 4787853598047767532}
   - component: {fileID: 8666193565413363475}
+  - component: {fileID: 114054725460661178}
+  - component: {fileID: 3664099627150914559}
   m_Layer: 0
   m_Name: enemy_zako
   m_TagString: Enemy
@@ -91,7 +93,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -128,3 +130,30 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &114054725460661178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7484647508453762151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d291c7c4cb0e7741b515f553121ba4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 6
+  gravity: 4.9
+  nonVisibleAct: 1
+--- !u!114 &3664099627150914559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7484647508453762151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9bb362ef6c5b97499cf43727d5aa868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

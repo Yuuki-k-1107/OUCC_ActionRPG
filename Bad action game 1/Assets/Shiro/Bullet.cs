@@ -61,6 +61,7 @@ public class Bullet : MonoBehaviour
         if (collision.tag != player || collision.tag != playershot)
         {
             anim.SetBool("burst", true);
+            if(collision.tag == "Enemy")
             Destroy(this.gameObject);
         }
     }

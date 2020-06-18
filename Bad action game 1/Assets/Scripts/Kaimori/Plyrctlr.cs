@@ -47,9 +47,11 @@ public class Plyrctlr : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            curHP -= 8;
-            curEXP += 3;
+            curHP -= (12 - Level);
+            //curEXP += 3;
             this.Rig2D.AddForce(transform.right * 5.0f);
+        } else if(other.gameObject.tag == "Goal"){
+            SceneManager.LoadScene("GoalScene");
         }
     }
 

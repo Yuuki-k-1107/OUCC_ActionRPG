@@ -13,14 +13,6 @@ public class unitychan_spear : MonoBehaviour
     {
         
         anim = GetComponent<Animator>();
-
-        //子オブジェクト"spear_collider"を取得
-        GameObject spearcollider = transform.Find("spear_collider").gameObject;
-
-        //"spear_collider"からBoxCollider2Dを取得
-        spearCollider = spearcollider.GetComponent<BoxCollider2D>();
-
-        
     }
 
     // Update is called once per frame
@@ -28,15 +20,13 @@ public class unitychan_spear : MonoBehaviour
     {
         if (Input.GetButtonDown("CloseAttack_spear"))
         {
-            anim.SetBool("spear", true);
+            anim.SetBool("Spear", true);
 
-            spearCollider.enabled = true;
 
-            Invoke("ColliderReset", 0.5f);
         }
-        else if (Input.GetButtonUp("CloseAttack_spear"))
+        else if (!Input.GetButton("CloseAttack_spear"))
         {
-            anim.SetBool("spear", false);
+            anim.SetBool("Spear", false);
         }
         
     }

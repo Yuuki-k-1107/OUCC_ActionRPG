@@ -150,7 +150,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 72756358}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 1441381325}
   - component: {fileID: 1441381324}
   - component: {fileID: 1441381328}
+  - component: {fileID: 1441381330}
   - component: {fileID: 1441381329}
   m_Layer: 0
   m_Name: unitychan_spear1
@@ -378,7 +379,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0.7, y: -0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -413,6 +414,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1441381330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441381323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd7d1ab13fe725d4495b5d1f2b92e5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spearCollider: {fileID: 2007452662}
 --- !u!1 &1686607498
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,6 +440,7 @@ GameObject:
   - component: {fileID: 1686607499}
   - component: {fileID: 1686607503}
   - component: {fileID: 1686607502}
+  - component: {fileID: 1686607505}
   - component: {fileID: 1686607504}
   m_Layer: 0
   m_Name: unitychan_bat1
@@ -575,6 +590,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1686607505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686607498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b42c1d5e2e3bacf4d83043949f2eb486, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  batCollider: {fileID: 72756360}
 --- !u!1 &2007452660
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,7 +641,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2007452660}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0

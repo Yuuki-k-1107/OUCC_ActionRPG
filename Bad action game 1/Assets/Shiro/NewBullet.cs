@@ -68,7 +68,6 @@ public class NewBullet : MonoBehaviour
         {
             anim.SetBool("burst", true);
             {
-                zakoData.EnemHP -= (4 + Plyrctlr.Level);
                 Debug.Log("Hit");
             }
             Destroy(this.gameObject);

@@ -7,6 +7,7 @@ public class zakomove : MonoBehaviour {
     [Header("移動速度")] public float speed;
     [Header("重力")] public float gravity;
     [Header("画面外でも行動する")] public bool nonVisibleAct;
+    public int EnemHP = 30;
     #endregion
 
     #region//private変数
@@ -21,7 +22,38 @@ public class zakomove : MonoBehaviour {
         sr = GetComponent<SpriteRenderer>();
     }
 
+    /*    private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.tag == "PlayerShot")
+            {
+                EnemHP -= (4+Plyrctlr.Level);
+                Debug.Log("Hit!");
+                if(EnemHP <= 0)
+                {
+                    Destroy(this.gameObject);
+                }
+            }
+        }*/
+
     // Update is called once per frame
+    void Update()
+    {
+        if (EnemHP <= 0)
+        {
+            Plyrctlr.curEXP += 3;
+            Destroy(this.gameObject);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "PlayerShot")
+        {
+
+                EnemHP -= (4 + Plyrctlr.Level);
+                Debug.Log("Hit");
+
+        }
+    }
     void FixedUpdate()
     {
         if (sr.isVisible|| nonVisibleAct)
@@ -37,7 +69,6 @@ public class zakomove : MonoBehaviour {
                 transform.localScale = new Vector3(1, 1, 1);
             }
             rb.velocity = new Vector2(xVector * speed, -gravity);
-            
         }
     }
 }

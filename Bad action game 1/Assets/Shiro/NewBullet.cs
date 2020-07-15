@@ -67,6 +67,9 @@ public class NewBullet : MonoBehaviour
         if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "PlayerShot")
         {
             anim.SetBool("burst", true);
+            {
+                Debug.Log("Hit");
+            }
             Destroy(this.gameObject);
         }
     }

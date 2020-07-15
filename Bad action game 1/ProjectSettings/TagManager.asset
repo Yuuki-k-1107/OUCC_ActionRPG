@@ -11,6 +11,7 @@ TagManager:
   - spear
   - bat
   - PlayerShot
+  - Goal
   layers:
   - Default
   - TransparentFX

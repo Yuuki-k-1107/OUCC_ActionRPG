@@ -24,7 +24,7 @@ public class unitychan_spear : MonoBehaviour
 
 
         }
-        else if (!Input.GetButton("CloseAttack_spear"))
+        else if (Input.GetButtonUp("CloseAttack_spear"))
         {
             anim.SetBool("Spear", false);
         }

@@ -1226,7 +1226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d291c7c4cb0e7741b515f553121ba4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 5
   gravity: 1
   nonVisibleAct: 1
   checkCollision: {fileID: 2028212074}
@@ -1470,7 +1470,7 @@ PrefabInstance:
     - target: {fileID: 2323366794398190103, guid: 5ebe570a2f67ab14ba48da1e49bac23f,
         type: 3}
       propertyPath: jumpPower
-      value: 600
+      value: 15000
       objectReference: {fileID: 0}
     - target: {fileID: 2323366794398190103, guid: 5ebe570a2f67ab14ba48da1e49bac23f,
         type: 3}
@@ -1480,7 +1480,7 @@ PrefabInstance:
     - target: {fileID: 2323366794398190103, guid: 5ebe570a2f67ab14ba48da1e49bac23f,
         type: 3}
       propertyPath: limit
-      value: 30
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2323366794876430773, guid: 5ebe570a2f67ab14ba48da1e49bac23f,
         type: 3}

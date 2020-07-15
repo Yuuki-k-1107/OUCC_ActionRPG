@@ -116,5 +116,13 @@ Thumbs.db
 
 #オリジナル
 *.dwlt
-/CurrentLayout.dwlt
+CurrentLayout.dwlt
 /expandedItems
+\assetDatabase3
+LastSceneManagerSetup.txt
+EditorInstance.json
+3fb501-mainStage.json
+bdffc9-mainStage.json
+df7016-mainStage.json
+bbcd30-mainStage.json
+UnityLockfile

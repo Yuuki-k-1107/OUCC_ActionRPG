@@ -25,7 +25,7 @@ public class Plyrctlr : MonoBehaviour
     void Start()
     {
         this.Rig2D = GetComponent<Rigidbody2D>();
-        maxHP = 100;
+        //maxHP = 100;
         curHP = maxHP;
         wmode = 1;
         respawn = new Vector3(-5, 0, 0);
@@ -50,8 +50,14 @@ public class Plyrctlr : MonoBehaviour
             curHP -= (12 - Level);
             //curEXP += 3;
             this.Rig2D.AddForce(transform.right * 5.0f);
-        } else if(other.gameObject.tag == "Goal"){
+        }
+        else if (other.gameObject.tag == "Goal")
+        {
             SceneManager.LoadScene("GoalScene");
+        }
+        else if (other.gameObject.tag == "Next1")
+        {
+            SceneManager.LoadScene("Stage2");
         }
     }
 
@@ -129,6 +135,7 @@ public class Plyrctlr : MonoBehaviour
 
         if (curHP <= 0)
         {
+            SceneManager.LoadScene("GameOverScene");
             Debug.Log("ゲームオーバー");
         }
 

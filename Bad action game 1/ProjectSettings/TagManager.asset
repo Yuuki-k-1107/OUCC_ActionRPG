@@ -12,6 +12,7 @@ TagManager:
   - bat
   - PlayerShot
   - Goal
+  - Wepons
   layers:
   - Default
   - TransparentFX

@@ -21,11 +21,14 @@ public class turret_move : MonoBehaviour
     private Rigidbody2D rb = null;
     private SpriteRenderer sr = null;
     private Animator anim = null;
-    private ObjectCollision oc = null;
     private BoxCollider2D col = null;
     private bool rightTleftF = false;
     private bool isDead = false;
     private bool isJump = false;
+    private bool isHit = false;
+    private string SpearTag = "spear";
+    private string BatTag = "bat";
+    private string PlayerShotTag = "PlayerShot";
     private float deadTimer = 0.0f;
     private float jumptimer = 0.0f;
     private float jumpPower;
@@ -38,13 +41,12 @@ public class turret_move : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        oc = GetComponent<ObjectCollision>();
         col = GetComponent<BoxCollider2D>();
     }
 
     void FixedUpdate()
     {
-        if (!oc.playerStepOn)
+        if (!isHit)
         {
             if (sr.isVisible || nonVisibleAct)
             {
@@ -110,6 +112,22 @@ public class turret_move : MonoBehaviour
                     deadTimer += Time.deltaTime;
                 }
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == SpearTag || collision.gameObject.tag == BatTag || collision.gameObject.tag == PlayerShotTag)
+        {
+            isHit = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == SpearTag || collision.gameObject.tag == BatTag || collision.gameObject.tag == PlayerShotTag)
+        {
+            isHit = false;
         }
     }
 }

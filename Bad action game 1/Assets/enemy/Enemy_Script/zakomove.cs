@@ -15,26 +15,27 @@ public class zakomove : MonoBehaviour {
     private Rigidbody2D rb = null;
     private SpriteRenderer sr = null;
     private Animator anim = null;
-    private ObjectCollision oc = null;
     private BoxCollider2D col = null;
     private bool rightTleftF = false;
     private bool isDead = false;
+    private bool isHit = false;
+    private string SpearTag = "spear";
+    private string BatTag = "bat";
+    private string PlayerShotTag = "PlayerShot";
     private float deadTimer = 0.0f;
     #endregion
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        oc = GetComponent<ObjectCollision>();
         col = GetComponent<BoxCollider2D>();
     }
 
     void FixedUpdate()
     {
-        if (!oc.playerStepOn)
+        if (!isHit)
         {
             if (sr.isVisible || nonVisibleAct)
             {
@@ -81,6 +82,22 @@ public class zakomove : MonoBehaviour {
                     deadTimer += Time.deltaTime;
                 }
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == SpearTag || collision.gameObject.tag == BatTag || collision.gameObject.tag == PlayerShotTag)
+        {
+            isHit = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == SpearTag || collision.gameObject.tag == BatTag || collision.gameObject.tag == PlayerShotTag)
+        {
+            isHit = false;
         }
     }
 }

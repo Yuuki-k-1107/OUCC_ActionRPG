@@ -14,7 +14,7 @@ public class CloseAttackManager : MonoBehaviour
 
     public int CloseWeponIndex = 0;
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "bat")
         {
@@ -43,11 +43,11 @@ public class CloseAttackManager : MonoBehaviour
         {
                 if (CloseWeponIndex == 1)
                 {
-                    anim.SetBool("Spear", true);
+                    anim.SetBool("Bat", true);
                 }
                 else if (CloseWeponIndex == 2)
                 {
-                    anim.SetBool("Bat", true);
+                    anim.SetBool("Spear", true);
                 }
 
         }

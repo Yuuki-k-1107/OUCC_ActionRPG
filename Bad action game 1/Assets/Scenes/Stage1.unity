@@ -3370,6 +3370,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 32
       objectReference: {fileID: 0}
+    - target: {fileID: 1242249182814918868, guid: 2ae71a5cbcff9c54393dc62626a52336,
+        type: 3}
+      propertyPath: boundHeight
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1242249182814918871, guid: 2ae71a5cbcff9c54393dc62626a52336,
         type: 3}
       propertyPath: m_IsActive

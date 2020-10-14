@@ -43,7 +43,7 @@ public class EnemyGun : MonoBehaviour
         if (collision.gameObject.tag == "PlayerShot")
         {
 
-            EnemHP -= (4 + Plyrctlr.Level);
+            EnemHP -= Plyrctlr.Attack;
 
         }
     }

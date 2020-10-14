@@ -20,6 +20,7 @@ public class StartScript : MonoBehaviour
             Plyrctlr.maxHP = 150;
             Plyrctlr.curEXP = 0;
             Plyrctlr.Level = 1;
+            Plyrctlr.Attack = 5;
         }
     }
 }

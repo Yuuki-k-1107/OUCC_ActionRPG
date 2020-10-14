@@ -15,7 +15,9 @@ public class Plyrctlr : MonoBehaviour
     public static int maxHP;
     public static int Level = 1;
     public static int curEXP = 0;
+    public static int Attack;
     public static int[] needEXP = new int[11];
+    public static int bonusP;
     public static bool isJumping;
     public static Vector3 respawn;
 
@@ -42,6 +44,7 @@ public class Plyrctlr : MonoBehaviour
         needEXP[8] = 700;
         needEXP[9] = 1000;
         needEXP[10] = 1500;
+        Attack = 5;
     }
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -49,7 +52,7 @@ public class Plyrctlr : MonoBehaviour
         {
             curHP -= (12 - Level);
             //curEXP += 3;
-            this.Rig2D.AddForce(transform.right * 5.0f);
+            this.Rig2D.AddForce(transform.right * 8.0f);
         }
         else if (other.gameObject.tag == "Goal")
         {
@@ -58,6 +61,10 @@ public class Plyrctlr : MonoBehaviour
         else if (other.gameObject.tag == "Next1")
         {
             SceneManager.LoadScene("Stage2");
+        }
+        else if (other.gameObject.tag == "Next2")
+        {
+            SceneManager.LoadScene("Stage1-3");
         }
     }
 
@@ -142,6 +149,30 @@ public class Plyrctlr : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             curEXP++;
+        }else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (bonusP > 0)
+            {
+                maxHP += 10;
+                curHP += 10;
+                bonusP--;
+            }
+            else
+            {
+                Debug.Log("ボーナスポイントが足りません");
+            }
+        }else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            if (bonusP > 0)
+            {
+                curHP = maxHP;
+                Attack++;
+                bonusP--;
+            }
+            else
+            {
+                Debug.Log("ボーナスポイントが足りません");
+            }
         }
 
         if (Level <= 10)
@@ -151,6 +182,8 @@ public class Plyrctlr : MonoBehaviour
                 Level++;
                 maxHP += 50;
                 curHP = maxHP; //レベルアップ時HP全快
+                Attack += 2;
+                bonusP += 3;
             }
         }
     }

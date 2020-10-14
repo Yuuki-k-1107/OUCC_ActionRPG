@@ -112,10 +112,10 @@ MonoBehaviour:
     y: 30
     width: 1368
     height: 780
-  m_MinSize: {x: 681, y: 498}
+  m_MinSize: {x: 683, y: 498}
   m_MaxSize: {x: 14004, y: 14048}
   vertical: 0
-  controlID: 18
+  controlID: 14431
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -137,10 +137,10 @@ MonoBehaviour:
     y: 0
     width: 966
     height: 780
-  m_MinSize: {x: 404, y: 498}
+  m_MinSize: {x: 406, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 19
+  controlID: 14432
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -162,10 +162,10 @@ MonoBehaviour:
     y: 0
     width: 966
     height: 391
-  m_MinSize: {x: 404, y: 224}
-  m_MaxSize: {x: 8004, y: 4024}
+  m_MinSize: {x: 406, y: 224}
+  m_MaxSize: {x: 8006, y: 4024}
   vertical: 0
-  controlID: 20
+  controlID: 14433
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -211,8 +211,8 @@ MonoBehaviour:
     y: 0
     width: 676
     height: 391
-  m_MinSize: {x: 204, y: 224}
-  m_MaxSize: {x: 4004, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -220,7 +220,7 @@ MonoBehaviour:
   - {fileID: 17}
   - {fileID: 18}
   m_Selected: 0
-  m_LastSelected: 2
+  m_LastSelected: 1
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_MinSize: {x: 277, y: 274}
   m_MaxSize: {x: 4002, y: 8024}
   vertical: 1
-  controlID: 90
+  controlID: 14390
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -292,8 +292,8 @@ MonoBehaviour:
     y: 0
     width: 402
     height: 318
-  m_MinSize: {x: 242, y: 224}
-  m_MaxSize: {x: 4002, y: 4024}
+  m_MinSize: {x: 240, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -318,8 +318,8 @@ MonoBehaviour:
     y: 318
     width: 402
     height: 462
-  m_MinSize: {x: 277, y: 74}
-  m_MaxSize: {x: 4002, y: 4024}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
@@ -433,10 +433,10 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      scrollPos: {x: 0, y: 320}
+      m_SelectedIDs: 80230000
       m_LastClickedID: 0
-      m_ExpandedIDs: 6634ffff4451ffff0855fffffef2ffff26fbffff
+      m_ExpandedIDs: c24cfeffb04efeffc652feff5653feff7253feff1055feff2c55feff3055feff9058feffe85bfeffee5bfefff0d3ffff1ceeffff3efbffffdafbfffffc650000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -491,9 +491,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 116.13257, y: 313.787, z: 1.4858301}
+    m_Target: {x: 1.038602, y: 16.548359, z: -0.61295366}
     speed: 2
-    m_Value: {x: 116.13257, y: 313.787, z: 1.4858301}
+    m_Value: {x: 1.038602, y: 16.548359, z: -0.61295366}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -517,22 +517,22 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
     zGrid:
-      m_Target: 0
+      m_Target: 1
       speed: 2
-      m_Value: 0
+      m_Value: 1
   m_Rotation:
     m_Target: {x: 0, y: 0, z: 0, w: 1}
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 140.741
+    m_Target: 64.27714
     speed: 2
-    m_Value: 140.741
+    m_Value: 64.27714
   m_Ortho:
     m_Target: 1
     speed: 2
     m_Value: 1
-  m_ShowGlobalGrid: 0
+  m_ShowGlobalGrid: 1
   m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
@@ -735,21 +735,21 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/enemy/spaceship_sprites/texture
+    - Assets/Scripts/Kaimori
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/enemy/spaceship_sprites/texture
+  - Assets/Scripts/Kaimori
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\81804\Documents\GitHub\OUCC-Hackathon-Game\Bad action
     game 1
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 132}
-    m_SelectedIDs: f42c0000
-    m_LastClickedID: 11508
-    m_ExpandedIDs: 000000005a280000c82800006a290000b8290000922b0000c22b0000e22b0000262c0000582c0000f62c0000122d0000742d0000e82d00001a2e0000c431000066320000ea33000030380000
+    scrollPos: {x: 0, y: 66.49963}
+    m_SelectedIDs: 12530000
+    m_LastClickedID: 21266
+    m_ExpandedIDs: 00000000da270000aa280000c228000034290000122a0000c02a0000e82a0000cc2c0000ec2c0000a42d0000483200002a3400009c3400005835000096350000543a00006a3a00008e3a0000a23b0000a63b0000f63c0000083f0000464c000086500000d657000014580000be5f0000ffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -777,7 +777,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000005a280000c82800006a290000b8290000922b0000c22b0000e22b0000262c0000582c0000f62c0000122d0000742d0000e82d00001a2e0000c431000066320000ea33000030380000
+    m_ExpandedIDs: 00000000da270000aa280000c228000034290000122a0000c02a0000e82a0000cc2c0000ec2c0000a42d0000483200002a3400009c3400005835000096350000543a00006a3a00008e3a0000a23b0000a63b0000f63c0000083f0000464c000086500000d657000014580000be5f0000ffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -804,8 +804,8 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c62300002e2b00000c35000082320000b62c000000000000fabb0000
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: c62300002e2b00000c35000082320000b62c000000000000fabb0000ee53000074280000545700005a5900004c350000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

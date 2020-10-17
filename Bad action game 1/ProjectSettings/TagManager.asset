@@ -12,6 +12,8 @@ TagManager:
   - bat
   - PlayerShot
   - Goal
+  - Next1
+  - Next2
   layers:
   - Default
   - TransparentFX

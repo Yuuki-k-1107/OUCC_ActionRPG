@@ -17,6 +17,10 @@ public class StartScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene("Stage1");
+            Plyrctlr.maxHP = 150;
+            Plyrctlr.curEXP = 0;
+            Plyrctlr.Level = 1;
+            Plyrctlr.Attack = 5;
         }
     }
 }

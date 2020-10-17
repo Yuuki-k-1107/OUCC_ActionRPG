@@ -17,7 +17,6 @@ public class Capsule : MonoBehaviour
     private Rigidbody2D rb = null;
     private SpriteRenderer sr = null;
     private Animator anim = null;
-    private ObjectCollision oc = null;
     private BoxCollider2D col = null;
     private bool walltheft = false;
     #endregion
@@ -27,7 +26,6 @@ public class Capsule : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        oc = GetComponent<ObjectCollision>();
         col = GetComponent<BoxCollider2D>();
     }
 

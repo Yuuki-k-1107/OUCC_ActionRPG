@@ -16,7 +16,6 @@ public class dossun_move : MonoBehaviour
     private Rigidbody2D rb = null;
     private SpriteRenderer sr = null;
     private Animator anim = null;
-    private ObjectCollision oc = null;
     private BoxCollider2D col = null;
     private float downPos = 0.0f;
     private bool upcheck = false;
@@ -28,7 +27,6 @@ public class dossun_move : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        oc = GetComponent<ObjectCollision>();
         col = GetComponent<BoxCollider2D>();
     }
 

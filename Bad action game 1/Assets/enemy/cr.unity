@@ -1470,8 +1470,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 533736081}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.81, y: 2.47, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.23, y: 0.35, z: 0}
+  m_LocalScale: {x: -0.7, y: 0.7, z: 1}
   m_Children:
   - {fileID: 1422415306}
   - {fileID: 1568136202329788341}
@@ -1547,12 +1547,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1568136202329788340}
-  jumpPowor: 4
+  jumpPower: 0
   jumpPoworConst: 0.8
   jumpGravity: 0.05
   speed: 5
   gravity: 1
-  es: 1
+  es: 0.7
+  interval: 4
+  HP: 20
   checkCollision: {fileID: 1422415304}
 --- !u!1 &868119877
 GameObject:
@@ -1846,7 +1848,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.1, y: 0}
+  m_Offset: {x: 1.3, y: -0.6}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1857,7 +1859,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 1}
+  m_Size: {x: 0.3, y: 1.5}
   m_EdgeRadius: 0
 --- !u!4 &1422415306
 Transform:
@@ -2335,11 +2337,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1568136202329788340}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e37fac7e53c1e94589ee6aef4e2ace5, type: 3}
+  m_Script: {fileID: 11500000, guid: 4111138dc8a93744e8b340b1f3f56486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
   maxDistance: 100
+  isLeft: 0
+  shooter: {fileID: 533736081}
 --- !u!1001 &3196637516014365110
 PrefabInstance:
   m_ObjectHideFlags: 0

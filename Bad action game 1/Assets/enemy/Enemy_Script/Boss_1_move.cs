@@ -5,17 +5,18 @@ using UnityEngine;
 public class Boss_1_move : MonoBehaviour
 {
     public GameObject bullet;
-    public float jumpPowor;
+    public float jumpPower;
     public float jumpPoworConst = 0.8f;
     public float jumpGravity = 0.05f;
     public float speed;
     public float gravity;
     public float es;
+    [Header("攻撃間隔")] public float interval;
     public int HP = 20;
     public EnemyCollisionCheck checkCollision;
 
 
-    public int move_type = 0;
+    private int move_type = 0;
     private int Attack_type = 0;
 
     private bool isIdle = true;
@@ -29,6 +30,8 @@ public class Boss_1_move : MonoBehaviour
     private string BatTag = "bat";
     private string PlayerShotTag = "PlayerShot";
     private float jumpPos = 0.0f;
+    private float guntimer = 0.0f;
+    private float ySpeed;
     private Rigidbody2D rb = null;
     private Animator anim = null;
     private CapsuleCollider2D capcol = null;
@@ -50,11 +53,11 @@ public class Boss_1_move : MonoBehaviour
             if (rightTleftF)
             {
                 xVector = 1;
-                transform.localScale = new Vector3(-es, es, 1);
+                transform.localScale = new Vector3(es, es, 1);
             }
             else
             {
-                transform.localScale = new Vector3(es, es, 1);
+                transform.localScale = new Vector3(-es, es, 1);
             }
 
             if(move_type == 1){
@@ -65,16 +68,18 @@ public class Boss_1_move : MonoBehaviour
             if(move_type == 2){
                 isIdle = false;
                 isRun = true;
+                StartCoroutine("WaitFotWalk");
             }
 
             if(move_type == 3){
                 isIdle = false;
                 isJump = true;
-                jumpPowor = jumpPoworConst;
+                jumpPower = jumpPoworConst;
             }
 
             if(isIdle){
                 move_type = Random.Range(0,4);
+                jumpPos = transform.position.y;
                 anim.SetBool("shoot", false);
                 anim.SetBool("run_shoot", false);
             }
@@ -82,10 +87,10 @@ public class Boss_1_move : MonoBehaviour
                rb.velocity = new Vector2(xVector * speed, -gravity);
             }
             else if(isJump){
-                jumpPos = transform.position.y;
-                jumpPowor = jumpPowor - jumpGravity;
-                rb.velocity = new Vector2(xVector * speed, -gravity);
-                if(jumpPowor<0 && transform.position.y <= jumpPos){
+                jumpPower -= jumpGravity;
+                ySpeed = jumpPower - jumpGravity;
+                rb.velocity = new Vector2(xVector * speed,ySpeed);
+                if(jumpPower<0 && transform.position.y <= jumpPos){
                     isIdle = true;
                     isJump = false;
                 }
@@ -94,6 +99,7 @@ public class Boss_1_move : MonoBehaviour
                     Attack_type = Random.Range(0,2);
                     if(Attack_type == 0){
                        anim.SetBool("shoot", true);
+                       rb.velocity = new Vector2(0, 0);
                        shoot();
                     }
                     else if(Attack_type == 1){
@@ -101,7 +107,6 @@ public class Boss_1_move : MonoBehaviour
                         rb.velocity = new Vector2(xVector * speed, -gravity);
                         shoot();
                     }
-                    StartCoroutine("WaitFotAttack");
             }
         }
         else{
@@ -151,10 +156,17 @@ public class Boss_1_move : MonoBehaviour
     }
 
     private void shoot(){
-        GameObject fire = Instantiate(bullet);
+        if(guntimer > interval){
+            guntimer = 0.0f;
+            GameObject fire = Instantiate(bullet);
             fire.transform.SetParent(transform);
             fire.transform.position = bullet.transform.position;
             fire.SetActive(true);
+        }
+        else
+        {
+            guntimer += Time.deltaTime;
+        }
     }
 
 

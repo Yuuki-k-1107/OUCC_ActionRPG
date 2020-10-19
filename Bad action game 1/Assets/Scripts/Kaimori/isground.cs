@@ -4,28 +4,64 @@ using UnityEngine;
 
 public class isground : MonoBehaviour
 {
-    public static bool ground = true;
-    Animator anim1;
+    [Header("エフェクト付きの床を判定するか？")] public bool checkPlatformGround = true;
+    private string groundTag = "tile1";
+    private string platformTag = "GroundPlatform";
+    private string moveFloorTag = "MoveFloor";
+    private string fallFloorTag = "FallFloor";
+    private bool isGround = true;
+    //    Animator anim1;
+    private bool isGroundEnter, isGroundStay, isGroundExit;
 
-    public void OnTriggerEnter2D(Collider2D something)
+    public bool IsGround()
     {
-        if(something.gameObject.tag == "tile1")
+        if (isGroundEnter || isGroundStay)
         {
-            ground = true;
-            Plyrctlr.isJumping = false;
-            this.anim1.SetTrigger("GROUND");
+            isGround = true;
+        }
+        else if (isGroundExit)
+        {
+            isGround = false;
+        }
+
+        isGroundEnter = false;
+        isGroundStay = false;
+        isGroundExit = false;
+        return isGround;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == groundTag)
+        {
+            isGroundEnter = true;
+        }
+        else if (checkPlatformGround && (collision.tag == platformTag || collision.tag == moveFloorTag || collision.tag == fallFloorTag))
+        {
+            isGroundEnter = true;
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        this.anim1 = GetComponent<Animator>();
+        if (collision.tag == groundTag)
+        {
+            isGroundStay = true;
+        }
+        else if (checkPlatformGround && (collision.tag == platformTag || collision.tag == moveFloorTag || collision.tag == fallFloorTag))
+        {
+            isGroundStay = true;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        
+        if (collision.tag == groundTag)
+        {
+            isGroundExit = true;
+        }
+        else if (checkPlatformGround && (collision.tag == platformTag || collision.tag == moveFloorTag || collision.tag == fallFloorTag))
+        {
+            isGroundExit = true;
+        }
     }
 }

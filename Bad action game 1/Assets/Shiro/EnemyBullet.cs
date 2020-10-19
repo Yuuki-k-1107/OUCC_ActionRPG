@@ -47,7 +47,6 @@ public class EnemyBullet : MonoBehaviour
         }
         else
         {
-            Debug.Log("進んでる");
             rb.MovePosition(transform.position += Vector3.left * Time.deltaTime * speed);
         }
     }
@@ -59,7 +58,7 @@ public class EnemyBullet : MonoBehaviour
         {
             anim.SetBool("burst", true);
             {
-                Debug.Log("Hit");
+//                Debug.Log("Hit");
             }
             Destroy(this.gameObject);
         }

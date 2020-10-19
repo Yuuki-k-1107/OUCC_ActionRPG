@@ -89,7 +89,7 @@ public class EnemyGun : MonoBehaviour
         if (timer > interval)
         {
             timer = 0.0f;
-            Debug.Log("撃った");
+//            Debug.Log("撃った");
             GameObject g = Instantiate(attackObj);
             g.transform.SetParent(transform);
             g.transform.position = attackObj.transform.position;

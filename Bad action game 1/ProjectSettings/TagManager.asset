@@ -13,6 +13,7 @@ TagManager:
   - PlayerShot
   - Goal
   - Next1
+  - MoveFloor
   layers:
   - Default
   - TransparentFX

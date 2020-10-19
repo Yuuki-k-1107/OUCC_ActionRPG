@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOverScene.unity
     guid: 2fb28df157ba21e4baefa46da2175313
+  - enabled: 0
+    path: Assets/Shiro/Stage1Shiro.unity
+    guid: c9dbe0fceaf654443b4813006ed31f21
   m_configObjects: {}

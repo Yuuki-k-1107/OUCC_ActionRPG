@@ -42,13 +42,13 @@ public class NewShotGun : MonoBehaviour
 
         if (ready == false)
         {
-            count += Time.deltaTime;
-            if (count >= cltm)
-            {
-                count = 0.0f;
+//            count += Time.deltaTime;
+//            if (count >= cltm)
+//            {
+//                count = 0.0f;
                 GameObject bullets = Instantiate(bulObj, stmrk.transform.position, Quaternion.identity) as GameObject;
                 ready = true;
-            }
+//            }
         }
         if (ready)
         {

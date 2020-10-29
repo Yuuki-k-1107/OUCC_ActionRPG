@@ -16,7 +16,7 @@ public class Arrow : MonoBehaviour
     private Animator anim = null;
     private bool mark = false;
     //    private int isright = 1;
-    //    private string player = "Player";//何かの間違いでプレイヤーにぶつかってもノーカン
+    private string player = "Player";//何かの間違いでプレイヤーにぶつかってもノーカン
     //    private string playershot = "PlayerShot";//弾同士のごっつんこもノーカン
     // Start is called before the first frame update
     void Start()
@@ -61,7 +61,7 @@ public class Arrow : MonoBehaviour
         }
         else
         {
-//            rb.velocity = new Vector3(blspd, 0, 0);
+            rb.velocity = new Vector3(blspd, 0, 0);
         }
     }
 

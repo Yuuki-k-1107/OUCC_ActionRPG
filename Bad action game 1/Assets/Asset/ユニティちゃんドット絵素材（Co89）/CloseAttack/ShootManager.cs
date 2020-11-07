@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class ShootManager : MonoBehaviour
@@ -60,47 +61,52 @@ public class ShootManager : MonoBehaviour
             bulObj = bulObj_arrow;
             stanim = stanim_arrow;
         }
-        
-        if (Input.GetKeyDown(KeyCode.Space) && ready)
+
+        if (shootIndex != 0)
         {
-
-            shot = true;
-            ready = false;
-            //            stpos = stmrk.transform.position;//マーカーの位置を取得
-            //                GameObject bullets = Instantiate(bulObj, stmrk.transform.position, Quaternion.identity) as GameObject;//マーカーと同じ位置に弾を生成
-
-        }
-        else
-        {
-            //            shot = false;
-        }
-
-
-        if (ready == false)
-        {
-            count += Time.deltaTime;
-            if (count >= cltm)
+            if (Input.GetKeyDown(KeyCode.Space) && ready)
             {
-                count = 0.0f;
-                GameObject bullets = Instantiate(bulObj, stmrk.transform.position, Quaternion.identity) as GameObject;
-                ready = true;
+
+                shot = true;
+                ready = false;
+                //            stpos = stmrk.transform.position;//マーカーの位置を取得
+                //                GameObject bullets = Instantiate(bulObj, stmrk.transform.position, Quaternion.identity) as GameObject;//マーカーと同じ位置に弾を生成
+
             }
-        }
-        if (ready)
-        {
-            count2 += Time.deltaTime;
-            if (count2 >= cltm)
+            else
             {
-                count2 = 0.0f;
-                if (ready)
+                //            shot = false;
+            }
+
+
+            if (ready == false)
+            {
+                count += Time.deltaTime;
+                if (count >= cltm)
                 {
-                    shot = false;
+                    count = 0.0f;
+                    GameObject bullets = Instantiate(bulObj, stmrk.transform.position, Quaternion.identity) as GameObject;
+                    ready = true;
                 }
             }
+            if (ready)
+            {
+                count2 += Time.deltaTime;
+                if (count2 >= cltm)
+                {
+                    count2 = 0.0f;
+                    if (ready)
+                    {
+                        shot = false;
+                    }
+                }
+            }
+            anim = GetComponent<Animator>();
+            anim.SetBool(stanim, shot);
+            //        rb = GetComponent<Rigidbody2D>();
         }
-        anim = GetComponent<Animator>();
-        anim.SetBool(stanim, shot);
-        //        rb = GetComponent<Rigidbody2D>();
+
+
     }
 }
 

@@ -43,6 +43,10 @@ public class EnemyFly : MonoBehaviour
             EnemHP -= (4 + Plyrctlr.Level);
 
         }
+        else if (collision.gameObject.tag == "Wepons")
+        {
+            EnemHP -= (8 + Plyrctlr.Level);
+        }
     }
     void FixedUpdate()
     {

@@ -51,7 +51,13 @@ public class CloseAttackManager : MonoBehaviour
                 }
 
         }
-        else if (Input.GetButtonUp("CloseAttack"))
+        /*else if (Input.GetButtonUp("CloseAttack"))
+        {
+            anim.SetBool("Spear", false);
+
+            anim.SetBool("Bat", false);
+        }*/
+        else
         {
             anim.SetBool("Spear", false);
 

@@ -13,6 +13,8 @@ TagManager:
   - PlayerShot
   - Goal
   - Wepons
+  - gun
+  - arrow
   layers:
   - Default
   - TransparentFX

@@ -12,7 +12,7 @@ public class isground : MonoBehaviour
         if(something.gameObject.tag == "tile1")
         {
             ground = true;
-            Plyrctlr.isJumping = false;
+            PlayerController.isJumping = false;
             this.anim1.SetTrigger("GROUND");
         }
     }

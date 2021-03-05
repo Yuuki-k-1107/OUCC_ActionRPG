@@ -17,7 +17,7 @@ public class zakoData : MonoBehaviour
         Debug.Log("HP:" + EnemHP);
         if(EnemHP <= 0)
         {
-            Plyrctlr.curEXP += 3;
+            PlayerController.curEXP += 3;
             Destroy(this.gameObject);
         }
     }

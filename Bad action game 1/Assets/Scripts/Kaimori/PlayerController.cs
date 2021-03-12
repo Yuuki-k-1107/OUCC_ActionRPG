@@ -18,7 +18,9 @@ public class PlayerController : MonoBehaviour
     public static int Attack, Defense;
     public static int[] needEXP = new int[11];
     public static int bonusP = 0;
+    public static int invincibleCount = 0;
     public static bool isJumping;
+    public static bool isInvincible = false;
     public static Vector3 respawn;
 
     private int wmode;
@@ -52,8 +54,13 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            curHP -= (12 - Defense);
-            this.Rig2D.AddForce(transform.right * 8.0f);
+            if (!isInvincible)
+            {
+                isInvincible = true;
+                invincibleCount = 100;
+                curHP -= (12 - Defense);
+                this.Rig2D.AddForce(transform.right * 8.0f);
+            }
         }
         else if (other.gameObject.tag == "Goal")
         {
@@ -92,6 +99,18 @@ public class PlayerController : MonoBehaviour
             }
         }*/
     }
+
+    private void FixedUpdate()
+    {
+        if (invincibleCount > 0)
+        {
+            invincibleCount--;
+        } else
+        {
+            isInvincible = false;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -192,3 +211,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 }
+

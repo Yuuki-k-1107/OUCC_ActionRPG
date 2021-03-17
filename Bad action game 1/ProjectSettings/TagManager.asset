@@ -13,7 +13,9 @@ TagManager:
   - PlayerShot
   - Goal
   - Next1
-  - Next2
+  - 1-1
+  - 2-1
+  - surinuke
   layers:
   - Default
   - TransparentFX

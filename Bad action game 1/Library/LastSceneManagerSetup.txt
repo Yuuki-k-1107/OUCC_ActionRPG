@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/enemy/cr.unity
+- path: Assets/Scenes/Stages/World1/Stage1-1.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

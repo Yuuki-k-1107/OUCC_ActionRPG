@@ -43,7 +43,7 @@ public class EnemyGun : MonoBehaviour
         if (collision.gameObject.tag == "PlayerShot")
         {
 
-            EnemHP -= Plyrctlr.Attack;
+            EnemHP -= PlayerController.Attack;
 
         }
     }
@@ -103,7 +103,7 @@ public class EnemyGun : MonoBehaviour
         {
             if (!isDead)
             {
-                Plyrctlr.curEXP += 3;
+                PlayerController.curEXP += 3;
                 //                anim.Play("dead");
                 isDead = true;
                 col.enabled = false;

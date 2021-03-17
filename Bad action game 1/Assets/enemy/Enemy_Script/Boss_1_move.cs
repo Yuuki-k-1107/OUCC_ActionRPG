@@ -30,7 +30,9 @@ public class Boss_1_move : MonoBehaviour
     private string BatTag = "bat";
     private string PlayerShotTag = "PlayerShot";
     private float jumpPos = 0.0f;
+    private float RunTimer = 4.0f;
     private float guntimer = 0.0f;
+    private float Timer = 0.0f;
     private float ySpeed;
     private Rigidbody2D rb = null;
     private Animator anim = null;
@@ -45,21 +47,7 @@ public class Boss_1_move : MonoBehaviour
     void FixedUpdate(){
         if(!isHit){
 
-            if (checkCollision.isOn)
-            {
-                rightTleftF = !rightTleftF;
-            }
-            int xVector = -1;
-            if (rightTleftF)
-            {
-                xVector = 1;
-                transform.localScale = new Vector3(es, es, 1);
-            }
-            else
-            {
-                transform.localScale = new Vector3(-es, es, 1);
-            }
-
+            Timer += Time.deltaTime;
             if(move_type == 1){
                 isIdle = false;
                 isAttack =true;
@@ -68,7 +56,6 @@ public class Boss_1_move : MonoBehaviour
             if(move_type == 2){
                 isIdle = false;
                 isRun = true;
-                StartCoroutine("WaitFotWalk");
             }
 
             if(move_type == 3){
@@ -83,26 +70,71 @@ public class Boss_1_move : MonoBehaviour
                 anim.SetBool("shoot", false);
                 anim.SetBool("run_shoot", false);
             }
-            else if(isRun){
-               rb.velocity = new Vector2(xVector * speed, -gravity);
+            if(isRun){
+                if (checkCollision.isOn)
+                    {
+                        rightTleftF = !rightTleftF;
+                    }
+                    int xVector = -1;
+                    if (rightTleftF)
+                    {
+                        xVector = 1;
+                        transform.localScale = new Vector3(es, es, 1);
+                    }
+                    else
+                    {
+                        transform.localScale = new Vector3(-es, es, 1);
+                    }
+                rb.velocity = new Vector2(xVector * speed, -gravity);
+                if(Timer > RunTimer){
+                    isIdle = true;
+                    isRun = false;
+                }
             }
-            else if(isJump){
+            if(isJump){
+                if (checkCollision.isOn)
+                {
+                    rightTleftF = !rightTleftF;
+                }
+                int xVector = -1;
+                if (rightTleftF)
+                {
+                    xVector = 1;
+                    transform.localScale = new Vector3(es, es, 1);
+                }
+                else
+                {
+                    transform.localScale = new Vector3(-es, es, 1);
+                }
                 jumpPower -= jumpGravity;
-                ySpeed = jumpPower - jumpGravity;
-                rb.velocity = new Vector2(xVector * speed,ySpeed);
+                rb.velocity = new Vector2(xVector * speed, jumpPower);
                 if(jumpPower<0 && transform.position.y <= jumpPos){
                     isIdle = true;
                     isJump = false;
                 }
             }
-            else if(isAttack){
+            if(isAttack){
                     Attack_type = Random.Range(0,2);
                     if(Attack_type == 0){
                        anim.SetBool("shoot", true);
                        rb.velocity = new Vector2(0, 0);
                        shoot();
                     }
-                    else if(Attack_type == 1){
+                    if(Attack_type == 1){
+                        if (checkCollision.isOn)
+                        {
+                            rightTleftF = !rightTleftF;
+                        }
+                        int xVector = -1;
+                        if (rightTleftF)
+                        {
+                            xVector = 1;
+                            transform.localScale = new Vector3(es, es, 1);
+                        }
+                        else
+                        {
+                            transform.localScale = new Vector3(-es, es, 1);
+                        }
                         anim.SetBool("run_shoot", true);
                         rb.velocity = new Vector2(xVector * speed, -gravity);
                         shoot();
@@ -132,12 +164,6 @@ public class Boss_1_move : MonoBehaviour
         isAttack = false;
     }
 
-    IEnumerator WaitFotWalk()
-    {
-        yield return new WaitForSeconds(0.5f);
-        isIdle = true;
-        isRun = false;
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -174,4 +200,5 @@ public class Boss_1_move : MonoBehaviour
         anim.SetBool("jump", isJump);
         anim.SetBool("Run", isRun);
     }
+    
 }

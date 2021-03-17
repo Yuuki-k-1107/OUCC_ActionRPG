@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
         this.anm1.SetFloat("V_V", this.Rig2D.velocity.y); //鉛直方向の速度
         Vector2 localscale = transform.localScale;
 
-        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))/* && isground.ground == true*/)
+        if ((Input.GetKeyDown(KeyCode.UpArrow))/*(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && isground.ground == true*/)
         {
             this.Rig2D.AddForce(transform.up * liftForce);
             isground.ground = false;

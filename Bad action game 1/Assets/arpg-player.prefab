@@ -106,12 +106,8 @@ GameObject:
   - component: {fileID: 1892300088276350519}
   - component: {fileID: 1892300088276350516}
   - component: {fileID: 1892300088276350517}
-  - component: {fileID: 1892300088276350514}
-  - component: {fileID: 1892300088276350515}
-  - component: {fileID: 1892300088276350512}
-  - component: {fileID: 1892300088276350513}
-  - component: {fileID: 1892300088276350526}
-  - component: {fileID: 1892300088276350527}
+  - component: {fileID: 1001442430397939913}
+  - component: {fileID: 6381258997718666355}
   m_Layer: 0
   m_Name: arpg-player
   m_TagString: Player
@@ -298,7 +294,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0625, y: -0.03125}
   m_Size: {x: 1.25, y: 1.5}
   m_Direction: 0
---- !u!114 &1892300088276350514
+--- !u!114 &1001442430397939913
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -307,14 +303,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1892300088276350524}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e00fb787691147d4d8f6a4c32311fc22, type: 3}
+  m_Script: {fileID: 11500000, guid: 565a016138404d34198901655a3376b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cltm: 0.7
-  bulObj: {fileID: 8981239517265870560, guid: 60670a833d876a34b806963571fea72b, type: 3}
-  stanim: ShotBow
+  cltm_gun: 0.3
+  bulObj_gun: {fileID: 3210991879228686993, guid: 91d1079ac6778514db1a9d0738d70c65,
+    type: 3}
+  stanim_gun: ShotGun
+  cltm_arrow: 0.7
+  bulObj_arrow: {fileID: 8981239517265870560, guid: 60670a833d876a34b806963571fea72b,
+    type: 3}
+  stanim_arrow: ShotBow
   stmrk: {fileID: 1892300088753638855}
---- !u!114 &1892300088276350515
+--- !u!114 &6381258997718666355
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -323,63 +324,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1892300088276350524}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6082ce39238bf324f8a56ee1275f7c64, type: 3}
+  m_Script: {fileID: 11500000, guid: 7827f1736e7842d41b3547d288bacc76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cltm: 0.01
-  bulObj: {fileID: 3210991879228686993, guid: 91d1079ac6778514db1a9d0738d70c65, type: 3}
-  stanim: ShotGun
-  stmrk: {fileID: 1892300088753638855}
---- !u!114 &1892300088276350512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1892300088276350524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2914bc2ef9e760e4ba2a95f703b1ade6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1892300088276350513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1892300088276350524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd7d1ab13fe725d4495b5d1f2b92e5ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spearCollider: {fileID: 1892300089585975769}
---- !u!114 &1892300088276350526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1892300088276350524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23bb7cde86103fc46b4da479e4a855ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1892300088276350527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1892300088276350524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b42c1d5e2e3bacf4d83043949f2eb486, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  batCollider: {fileID: 1892300090211846232}
+  stanim_spear: Spear
+  stanim_bat: Bat
 --- !u!1 &1892300088753638855
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,7 +375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1892300089585975768
 Transform:
   m_ObjectHideFlags: 0
@@ -435,7 +384,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892300089585975590}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.9749999, y: -0.053, z: 0}
+  m_LocalPosition: {x: 1.02, y: -0.23, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 1892300088276350506}
@@ -448,13 +397,13 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892300089585975590}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.1, y: -0.06}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -465,8 +414,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.1}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.7, y: 0.3}
+  m_EdgeRadius: 0.06
 --- !u!1 &1892300090211846233
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +432,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1892300090211846235
 Transform:
   m_ObjectHideFlags: 0
@@ -492,7 +441,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892300090211846233}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9749999, y: -0.053, z: 0}
+  m_LocalPosition: {x: 0.78, y: -0.06, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 1892300088276350506}
@@ -505,13 +454,13 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892300090211846233}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.05, y: -0.05}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -522,5 +471,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 1
   serializedVersion: 2
-  m_Size: {x: 0.35, y: 0.15}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.5, y: 0.5}
+  m_EdgeRadius: 0.06

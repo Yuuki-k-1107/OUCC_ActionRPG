@@ -46,6 +46,10 @@ public class EnemyGun : MonoBehaviour
             EnemHP -= PlayerController.Attack;
 
         }
+        else if (collision.gameObject.tag == "bat" || collision.gameObject.tag == "spear")
+        {
+            EnemHP -= PlayerController.Attack*PlayerController.Attack;
+        }
     }
     void FixedUpdate()
     {

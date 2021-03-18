@@ -11,6 +11,36 @@ public class UI : MonoBehaviour
     GameObject exptext;
     GameObject lvltext;
 
+
+
+
+
+    [SerializeField]private GameObject attackUIIcon;
+    [SerializeField]private GameObject shootUIIcon;
+    [SerializeField]private Sprite empwepsprite;
+    [SerializeField]private Sprite spearsprite;
+    [SerializeField]private Sprite batsprite;
+    [SerializeField]private Sprite arrowsprite;
+    [SerializeField]private Sprite bulletsprite;
+    private Sprite attacksprite;
+    private Sprite shootsprite;
+
+    private void SetCurrentSpriteOfWeponIndex(int id, in Sprite spr1, in Sprite spr2, out Sprite outspr)
+    {
+        switch(id)
+        {
+            case 1:
+                outspr = spr1;
+                break;
+            case 2:
+                outspr = spr2;
+                break;
+            default:
+                outspr = empwepsprite;
+                break;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,5 +68,11 @@ public class UI : MonoBehaviour
             this.expbar.GetComponent<Image>().fillAmount = 1; this.exptext.GetComponent<Text>().text = "Level Maximized.";
         }
         this.lvltext.GetComponent<Text>().text = "Level: " + PlayerController.Level.ToString();
+
+        SetCurrentSpriteOfWeponIndex(WepomIndexContainer.CloseWeponIndex, spearsprite, batsprite, out attacksprite);
+        SetCurrentSpriteOfWeponIndex(WepomIndexContainer.ShootWeponIndex, bulletsprite, arrowsprite, out shootsprite);
+
+        this.attackUIIcon.GetComponent<Image>().sprite = attacksprite;
+        this.shootUIIcon.GetComponent<Image>().sprite = shootsprite;
     }
 }

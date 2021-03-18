@@ -60,6 +60,8 @@ public class CloseAttackManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.X))
             {
                 anim.SetBool(stanim, true);
+                Debug.Log("Activate close attack");
+                
             }
             else
             {

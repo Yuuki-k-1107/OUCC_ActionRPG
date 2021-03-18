@@ -14,6 +14,7 @@ public class CloseAttackItemCollisionChecker : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             WepomIndexContainer.CloseWeponIndex = this.CloseWeponIndex;
+            Debug.Log("Set close attack wepon");
         }
 
     }

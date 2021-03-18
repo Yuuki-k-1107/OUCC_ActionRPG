@@ -14,6 +14,7 @@ public class ShootItemCollisionChecker : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             WepomIndexContainer.ShootWeponIndex = this.ShootWeponIndex;
+            Debug.Log("Set shoot wepon");
         }
 
     }

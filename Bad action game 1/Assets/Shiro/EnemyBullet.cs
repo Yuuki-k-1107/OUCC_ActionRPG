@@ -57,10 +57,10 @@ public class EnemyBullet : MonoBehaviour
     {
         if (collision.gameObject.tag != "Enemy")
         {
-            anim.SetBool("burst", true);
-            {
-                Debug.Log("Hit");
-            }
+            //anim.SetBool("burst", true);
+            //{
+            //    Debug.Log("Hit");
+            //}
             Destroy(this.gameObject);
         }
     }

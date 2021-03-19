@@ -13,6 +13,7 @@ public class EnemyGun : MonoBehaviour
     public bool isWalk = true;
     [Header("攻撃オブジェクト")] public GameObject attackObj;
     [Header("攻撃間隔")] public float interval;
+    [Header("撃破SE")] public AudioClip clip1;
     #endregion
 
     #region//プライベート変数
@@ -29,6 +30,8 @@ public class EnemyGun : MonoBehaviour
     private float timer;
     #endregion
 
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +40,7 @@ public class EnemyGun : MonoBehaviour
         anim = GetComponent<Animator>();
         oc = GetComponent<ObjectCollision>();
         col = GetComponent<BoxCollider2D>();
+        audioSource = GetComponent<AudioSource>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -111,6 +115,7 @@ public class EnemyGun : MonoBehaviour
                 //                anim.Play("dead");
                 isDead = true;
                 col.enabled = false;
+                audioSource.PlayOneShot(clip1);
             }
             else
             {

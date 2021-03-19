@@ -13,6 +13,11 @@ public class CloseAttackManager : MonoBehaviour
     private Animator anim = null;
     //    private Rigidbody2D rb = null;
 
+    [Header("batSE")] public AudioClip clipbat;
+    [Header("spearSE")] public AudioClip clipspear;
+    private AudioClip clip;
+    AudioSource audioSource;
+
     private string stanim;
 
 
@@ -27,13 +32,16 @@ public class CloseAttackManager : MonoBehaviour
             case 1:
                 stanim = stanim_spear;
                 anim.SetBool(stanim_bat, false);
+                clip = clipspear;
                 break;
             case 2:
                 stanim = stanim_bat;
                 anim.SetBool(stanim_spear, false);
+                clip = clipbat;
                 break;
             default:
                 stanim = null;
+                clip = null;
                 break;
         }
     }
@@ -48,6 +56,7 @@ public class CloseAttackManager : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -60,6 +69,7 @@ public class CloseAttackManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.X))
             {
                 anim.SetBool(stanim, true);
+                audioSource.PlayOneShot(clip);
             }
             else
             {

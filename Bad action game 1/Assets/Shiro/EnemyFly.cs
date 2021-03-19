@@ -11,6 +11,7 @@ public class EnemyFly : MonoBehaviour
     [Header("画面外でも行動する")] public bool nonVisibleAct;
     [Header("接触判定")] public EnemyFlyCol checkCollision;
     public int EnemHP = 30;
+    [Header("撃破SE")] public AudioClip clip2;
     #endregion
 
     #region//プライベート変数
@@ -26,6 +27,8 @@ public class EnemyFly : MonoBehaviour
     private bool timeToBack;
     #endregion
 
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +37,7 @@ public class EnemyFly : MonoBehaviour
         anim = GetComponent<Animator>();
         oc = GetComponent<ObjectCollision>();
         col = GetComponent<BoxCollider2D>();
+        audioSource = GetComponent<AudioSource>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -91,6 +95,7 @@ public class EnemyFly : MonoBehaviour
 //                anim.Play("dead");
                 isDead = true;
                 col.enabled = false;
+                audioSource.PlayOneShot(clip2);
             }
             else
             {

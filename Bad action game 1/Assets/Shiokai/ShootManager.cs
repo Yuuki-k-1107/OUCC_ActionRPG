@@ -15,6 +15,12 @@ public class ShootManager : MonoBehaviour
                                             //    [Header("弾速")] public float blspd = 3.0f;
     [Header("発射アニメarrpw")] public string stanim_arrow;//shoot anime
     [Header("発射点")] public GameObject stmrk;
+
+    [Header("gunSE")] public AudioClip clipgun;
+    [Header("arrowSE")] public AudioClip cliparrow;
+    AudioSource audioSource;
+    private AudioClip clip;
+
     //    private Vector3 stpos;
     private Animator anim = null;
     //    private Rigidbody2D rb = null;
@@ -42,17 +48,20 @@ public class ShootManager : MonoBehaviour
                 bulObj = bulObj_gun;
                 stanim = stanim_gun;
                 anim.SetBool(stanim_arrow, false);
+                clip = clipgun;
                 break;
             case 2:
                 cltm = cltm_arrow;
                 bulObj = bulObj_arrow;
                 stanim = stanim_arrow;
                 anim.SetBool(stanim_gun, false);
+                clip = cliparrow;
                 break;
             default:
                 cltm = 0;
                 bulObj = null;
                 stanim = null;
+                clip = null;
                 break;
         }
     }
@@ -67,6 +76,7 @@ public class ShootManager : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -85,6 +95,7 @@ public class ShootManager : MonoBehaviour
                 ready = false;
                 //            stpos = stmrk.transform.position;//マーカーの位置を取得
                 //                GameObject bullets = Instantiate(bulObj, stmrk.transform.position, Quaternion.identity) as GameObject;//マーカーと同じ位置に弾を生成
+                audioSource.PlayOneShot(clip);
 
             }
             else

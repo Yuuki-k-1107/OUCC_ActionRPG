@@ -12,6 +12,7 @@ public class EnemyBase : MonoBehaviour
     [Header("地面に対する接触判定")] public DbottomCollisionCheck dbottomCollision;
     [Header("敵のサイズ")] public float es;
     [Header("ジャンプ力")] public float jumpPower;
+    public AnimationCurve jumpCurve;
 
     #endregion
 
@@ -26,14 +27,18 @@ public class EnemyBase : MonoBehaviour
     [SerializeField]
     protected bool isJump = false;
     protected bool isGrounded = false;
+    protected bool canJumping = false;
     protected string SpearTag = "spear";
     protected string BatTag = "bat";
     protected string PlayerShotTag = "PlayerShot";
     protected float deadTimer = 0.0f;
-    protected float start = 5.0f;
-    protected float finish = 5.3f;
+    protected float start = 3.0f;
+    protected float finish = 5.0f;
+    [SerializeField]
     protected float jumptimer = 0.0f;
+    [SerializeField]
     protected Vector2 velocity = Vector2.zero;
+    protected float jumpTime = 0f;
     #endregion
 
     void Start()
@@ -80,8 +85,34 @@ public class EnemyBase : MonoBehaviour
                     transform.localScale = new Vector3(es, es, 1);
                 }
 
-                velocity.x *= speed;
-                velocity.y = -gravity;
+                if(canJumping){
+
+                    jumptimer += Time.deltaTime;
+
+                    
+                    if(jumptimer > start){
+                            jumpTime += Time.deltaTime;
+                            isJump = true;
+                        }
+                    
+
+                    if(jumptimer > finish){
+                        isJump = false;
+                        jumptimer = 0;
+                        jumpTime = 0f;
+                    }
+                }
+
+                if(!isJump){
+                    velocity.x *= speed;
+                    velocity.y = -gravity;
+                } else {
+                    velocity.x *= speed;
+                    velocity.y = jumpPower * jumpCurve.Evaluate(jumpTime);
+                }
+
+
+
                 anim.SetBool("walk", true);
             }
             else
@@ -119,7 +150,7 @@ public class EnemyBase : MonoBehaviour
             if(jumptimer > start){
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             }
-            else if(jumptimer < finish){
+            else if(jumptimer > finish){
                 jumptimer = 0;
             }
         }

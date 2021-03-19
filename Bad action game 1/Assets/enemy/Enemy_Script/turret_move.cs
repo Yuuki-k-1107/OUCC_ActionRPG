@@ -5,21 +5,16 @@ using UnityEngine;
 public class turret_move : EnemyBase
 {
 
-    void Start(){
-        isJump = true;
-    }
-
+    // Update is called once per frame
     void FixedUpdate()
     {
-        if (!isHit)
-        {
-            Move(speed,gravity);
-            rb.MovePosition(rb.position + velocity * Time.deltaTime);
+        canJumping = true;
+        if(!isHit){
+            Move(speed, gravity);
+            rb.velocity = velocity;
         }
-        else
-        {
+        else {
             Dead();
         }
     }
-
 }

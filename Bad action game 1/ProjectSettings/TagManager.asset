@@ -16,6 +16,9 @@ TagManager:
   - 1-1
   - 2-1
   - surinuke
+  - 1-2
+  - Door
+  - Teleport
   layers:
   - Default
   - TransparentFX

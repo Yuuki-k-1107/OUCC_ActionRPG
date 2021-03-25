@@ -9,8 +9,11 @@ public class EnemyGun : MonoBehaviour
     [Header("重力")] public float gravity;
     [Header("画面外でも行動する")] public bool nonVisibleAct;
     [Header("接触判定")] public EnemyGunCol checkCollision;
-    public int EnemHP = 30;
-    public bool isWalk = true;
+    [Header("敵体力")] public int EnemHP = 10;
+    [Header("敵を倒したときの経験値")] public int earnEXP = 3;
+    [Header("敵の攻撃力")] public int enemyAttack = 5;
+    [Header("敵の防御力")] public int enemyDefense = 0;
+    [Header("歩行しているかどうか")] public bool isWalk = true;
     [Header("攻撃オブジェクト")] public GameObject attackObj;
     [Header("攻撃間隔")] public float interval;
     #endregion
@@ -43,12 +46,14 @@ public class EnemyGun : MonoBehaviour
         if (collision.gameObject.tag == "PlayerShot")
         {
 
-            EnemHP -= PlayerController.Attack;
+            if (PlayerController.Attack > enemyDefense) EnemHP -= (PlayerController.Attack - this.enemyDefense);
+            else EnemHP--; //詰み防止のために1ダメージを与えられるようにする
 
         }
-        else if (collision.gameObject.tag == "bat" || collision.gameObject.tag == "spear")
+
+        if (collision.gameObject.tag == "Player")
         {
-            EnemHP -= PlayerController.Attack*PlayerController.Attack;
+            if ((enemyAttack > PlayerController.Defense) && !PlayerController.isInvincible) PlayerController.curHP -= (this.enemyAttack - PlayerController.Defense);
         }
     }
     void FixedUpdate()
@@ -107,7 +112,7 @@ public class EnemyGun : MonoBehaviour
         {
             if (!isDead)
             {
-                PlayerController.curEXP += 3;
+                PlayerController.curEXP += earnEXP;
                 //                anim.Play("dead");
                 isDead = true;
                 col.enabled = false;

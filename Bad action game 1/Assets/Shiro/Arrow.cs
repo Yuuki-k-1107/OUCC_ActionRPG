@@ -70,7 +70,7 @@ public class Arrow : MonoBehaviour
         if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "PlayerShot")
         {
             {
-                zakoData.EnemHP -= (15 + PlayerController.Level);
+                zakoData.EnemHP -= 3;
                 Debug.Log("Hit");
             }
             Destroy(this.gameObject);

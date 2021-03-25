@@ -6,6 +6,7 @@ public class EnemyBullet : MonoBehaviour
 {
     [Header("スピード")] public float speed = 3.0f;
     [Header("最大移動距離")] public float maxDistance = 100.0f;
+    [Header("弾丸威力")] public int bulletAttack = 5;
 //    [Header("左向き")] public bool isLeft = false;
 
     private Rigidbody2D rb;
@@ -60,6 +61,10 @@ public class EnemyBullet : MonoBehaviour
             anim.SetBool("burst", true);
             {
                 Debug.Log("Hit");
+                if(collision.gameObject.tag == "Player")
+                {
+                    if ((bulletAttack > PlayerController.Defense) && !PlayerController.isInvincible) PlayerController.curHP -= (this.bulletAttack - PlayerController.Defense);
+                }
             }
             Destroy(this.gameObject);
         }

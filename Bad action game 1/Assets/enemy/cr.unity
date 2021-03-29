@@ -3355,5 +3355,16 @@ PrefabInstance:
       propertyPath: aiIfShot
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 579178480959933759, guid: 1325a0c5910dbe449acaa449e22847ae,
+        type: 3}
+      propertyPath: LaunchOfShot
+      value: 
+      objectReference: {fileID: 579178481393002409}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1325a0c5910dbe449acaa449e22847ae, type: 3}
+--- !u!1 &579178481393002409 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 579178480918142778, guid: 1325a0c5910dbe449acaa449e22847ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 579178481393002408}
+  m_PrefabAsset: {fileID: 0}

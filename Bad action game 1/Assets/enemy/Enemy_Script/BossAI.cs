@@ -17,13 +17,13 @@ public class BossAI : MonoBehaviour
     [Header("1度に弾を発射する回数")] public int bullettimes = 5;
     [Header("地面に対する接触判定")] public DbottomCollisionCheck dbottomCollision;
     [Header("弾の速さ")] public float bulletSpeed = 10f;
-	[Header("ダッシュ時の速さ")] public int DashMag = 7;
+	[Header("ダッシュ時の速さ")] public int DashMag = 2;
     public int Hp = 20;
     public EnemyCollisionCheck checkCollision;
-    public int aiIfRUNTOPLAYER 			= 30;
+    public int aiIfRUNTOPLAYER 			= 10;
 	public int aiIfJUMPTOPLAYER 		= 10;
 	public int aiIfESCAPE 				= 10;
-    public int aiIfShot                 = 30;
+    public int aiIfShot                 = 40;
 
     private bool isJump = false;
     private bool isDead = false;
@@ -139,12 +139,12 @@ public class BossAI : MonoBehaviour
 			break;
 
             case ENEMYAISTS.ATTACKONSIGHT   :
-            if(GetDistanePlayer() > 1.0f && GetDistanePlayer() < 7.0f){
+            //if(GetDistanePlayer() > 1.0f && GetDistanePlayer() < 7.0f){
                 Attack_Fire();
-            } else {
-                ActionLookup(player,0.1f);
-                SetAIState(ENEMYAISTS.WAIT, 1.0f);
-            }
+            //} else {
+                //ActionLookup(player,0.1f);
+                //SetAIState(ENEMYAISTS.WAIT, 1.0f);
+            //}
             break;
 			
 		case ENEMYAISTS.ESCAPE			: // 遠ざかる
@@ -194,13 +194,13 @@ public class BossAI : MonoBehaviour
 		ActionLookup(player,0.1f);
 		xSpeed = speed * dir * DashMag;
 		attackNockBackVector = new Vector2(1000.0f,100.0f);
-		SetAIState(ENEMYAISTS.WAIT,1.0f);
+		SetAIState(ENEMYAISTS.WAIT,0.2f);
 	}
 
 	void Escape() {
 		ActionMove (0.0f);
 		xSpeed = speed * dir * DashMag;
-		SetAIState(ENEMYAISTS.WAIT,1.0f);
+		SetAIState(ENEMYAISTS.WAIT,0.1f);
 	}
 
 	void Attack_Jump() {

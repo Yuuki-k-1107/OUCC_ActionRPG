@@ -16,12 +16,12 @@ public class StartScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("Stage1-1");
-            PlayerController.maxHP = 150;
+            SceneManager.LoadScene("WorldMap");
+            PlayerController.maxHP = 70;
             PlayerController.curEXP = 0;
             PlayerController.Level = 1;
-            PlayerController.Attack = 5;
-            PlayerController.Defense = 3;
+            PlayerController.Attack = 6;
+            PlayerController.Defense = 0;
         }
     }
 }

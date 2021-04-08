@@ -9,7 +9,7 @@ public class isground : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D something)
     {
-        if(something.gameObject.tag == "tile1"||something.gameObject.tag == "surinuke")
+        if(something.gameObject.tag == "enemy"||something.gameObject.tag == "tile1"||something.gameObject.tag == "surinuke")
         {
             ground = true;
             PlayerController.isJumping = false;

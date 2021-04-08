@@ -56,7 +56,7 @@ public class UI : MonoBehaviour
     {
         this.hpbar.GetComponent<Image>().fillAmount = PlayerController.curHP * 1.0f / PlayerController.maxHP;
         this.hptext.GetComponent<Text>().text = "HP:" + PlayerController.curHP.ToString() + " / " + PlayerController.maxHP.ToString();
-        if (PlayerController.Level <= 10)
+        if (PlayerController.Level <= 20)
         {
             this.expbar.GetComponent<Image>().fillAmount = 1.0f * (PlayerController.curEXP - PlayerController.needEXP[PlayerController.Level - 1])
                 / (PlayerController.needEXP[PlayerController.Level] - PlayerController.needEXP[PlayerController.Level - 1]);

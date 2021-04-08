@@ -10,9 +10,11 @@ public class EnemyFly : MonoBehaviour
     [Header("重力")] public float gravity;
     [Header("画面外でも行動する")] public bool nonVisibleAct;
     [Header("接触判定")] public EnemyFlyCol checkCollision;
-    public int EnemHP = 30;
+    [Header("敵体力")] public int EnemHP = 30;
+    [Header("敵を倒したときの経験値")] public int earnEXP = 3;
+    [Header("敵の攻撃力")] public int enemyAttack = 5;
+    [Header("敵の防御力")] public int enemyDefense = 0;
     #endregion
-
     #region//プライベート変数
     private Rigidbody2D rb = null;
     private SpriteRenderer sr = null;
@@ -40,8 +42,14 @@ public class EnemyFly : MonoBehaviour
         if (collision.gameObject.tag == "PlayerShot")
         {
 
-            EnemHP -= PlayerController.Attack;
+            if (PlayerController.Attack > enemyDefense) EnemHP -= (PlayerController.Attack - this.enemyDefense);
+            else EnemHP--; //詰み防止のために1ダメージを与えられるようにする
 
+        }
+
+        if(collision.gameObject.tag == "Player")
+        {
+            if((enemyAttack > PlayerController.Defense) && !PlayerController.isInvincible) PlayerController.curHP -= (this.enemyAttack - PlayerController.Defense);
         }
         else if (collision.gameObject.tag == "bat" || collision.gameObject.tag == "spear")
         {
@@ -87,7 +95,7 @@ public class EnemyFly : MonoBehaviour
         {
             if (!isDead)
             {
-                PlayerController.curEXP += 3;
+                PlayerController.curEXP += earnEXP;
 //                anim.Play("dead");
                 isDead = true;
                 col.enabled = false;

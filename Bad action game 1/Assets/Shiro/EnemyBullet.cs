@@ -58,7 +58,7 @@ public class EnemyBullet : MonoBehaviour
     {
         if (collision.gameObject.tag != "Enemy")
         {
-            anim.SetBool("burst", true);
+            //anim.SetBool("burst", true);
             {
                 Debug.Log("Hit");
                 if(collision.gameObject.tag == "Player")

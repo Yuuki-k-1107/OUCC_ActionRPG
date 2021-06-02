@@ -14,6 +14,7 @@ public class EnemyFly : MonoBehaviour
     [Header("敵を倒したときの経験値")] public int earnEXP = 3;
     [Header("敵の攻撃力")] public int enemyAttack = 5;
     [Header("敵の防御力")] public int enemyDefense = 0;
+    [Header("撃破SE")] public AudioClip clip;
     #endregion
     #region//プライベート変数
     private Rigidbody2D rb = null;
@@ -26,6 +27,8 @@ public class EnemyFly : MonoBehaviour
     private float deadTimer = 0.0f;
     private float moveTimer = 0.0f;
     private bool timeToBack;
+
+    AudioSource audioSource;
     #endregion
 
     // Start is called before the first frame update
@@ -36,6 +39,7 @@ public class EnemyFly : MonoBehaviour
         anim = GetComponent<Animator>();
         oc = GetComponent<ObjectCollision>();
         col = GetComponent<BoxCollider2D>();
+        audioSource = GetComponent<AudioSource>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -99,6 +103,7 @@ public class EnemyFly : MonoBehaviour
 //                anim.Play("dead");
                 isDead = true;
                 col.enabled = false;
+                audioSource.PlayOneShot(clip);
             }
             else
             {

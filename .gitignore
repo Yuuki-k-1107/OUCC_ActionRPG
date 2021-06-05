@@ -61,6 +61,8 @@ crashlytics-build.properties
 #ここから新しく入れたやつ
 /[Bb]ad action game 1/Library/
 /[Bb]ad action game 1/Temp/
+/[Bb]ad action game 1/obj/
+/[Bb]ad action game 1/Logs/
 /[Oo]bj/
 /[Bb]uild/
 /[Bb]uilds/

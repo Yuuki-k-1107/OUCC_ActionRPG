@@ -121,6 +121,7 @@ MonoBehaviour:
   blspd: 20
   blrng: 20
   str: arpg-player
+  shotSE: {fileID: 8300000, guid: a0ca7b11e90eaad42980c1e54a3682cf, type: 3}
 --- !u!50 &3210991879228687007
 Rigidbody2D:
   serializedVersion: 4
@@ -168,10 +169,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a0ca7b11e90eaad42980c1e54a3682cf, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 1.2
   Loop: 0
   Mute: 0
   Spatialize: 0

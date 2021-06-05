@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     [Header("弾速")] public float blspd = 3.0f;
     [Header("射程")] public float blrng = 100.0f;
     [Header("撃った人")] public GameObject shooter;
+    [Header("射撃SE")] public AudioClip shotSE;
     private Rigidbody2D rb;
     private Vector3 defaultPos;
     private Vector3 plpos;
@@ -15,11 +16,13 @@ public class Bullet : MonoBehaviour
     private bool mark = false;
     private string player = "Player";//何かの間違いでプレイヤーにぶつかってもノーカン
     private string playershot = "PlayerShot";//弾同士のごっつんこもノーカン
+    AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
         if (rb == null)
         {
             Debug.Log("設定が足りません");
@@ -38,6 +41,7 @@ public class Bullet : MonoBehaviour
             {
                 isright = 1;
             }
+            audioSource.PlayOneShot(shotSE);
         }
     }
 

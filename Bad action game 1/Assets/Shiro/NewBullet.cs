@@ -8,6 +8,7 @@ public class NewBullet : MonoBehaviour
     [Header("弾速")] public float blspd = 3.0f;
     [Header("射程")] public float blrng = 100.0f;
     [Header("撃った人")] public string str;
+    [Header("射撃SE")] public AudioClip shotSE;
     private GameObject shooter;
     private Rigidbody2D rb;
 //    private Rigidbody2D strb;
@@ -15,16 +16,18 @@ public class NewBullet : MonoBehaviour
     private Vector3 plpos;
     private Animator anim = null;
     private bool mark = false;
-//    private int isright = 1;
-//    private string player = "Player";//何かの間違いでプレイヤーにぶつかってもノーカン
-//    private string playershot = "PlayerShot";//弾同士のごっつんこもノーカン
+    //    private int isright = 1;
+    //    private string player = "Player";//何かの間違いでプレイヤーにぶつかってもノーカン
+    //    private string playershot = "PlayerShot";//弾同士のごっつんこもノーカン
+    //AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         shooter = GameObject.Find(str);
-//        strb = shooter.GetComponent<Rigidbody2D>();
+        //audioSource = GetComponent<AudioSource>();
+        //        strb = shooter.GetComponent<Rigidbody2D>();
         if (rb == null)
         {
             Debug.Log("設定が足りません");
@@ -45,6 +48,7 @@ public class NewBullet : MonoBehaviour
                 blspd = -blspd;
             }
             mark = true;
+            AudioSource.PlayClipAtPoint(clip: shotSE, position:transform.position , volume:1.0F);
         }
     }
 

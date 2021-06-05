@@ -225,7 +225,12 @@ MonoBehaviour:
   earnEXP: 3
   enemyAttack: 5
   enemyDefense: 0
-  clip: {fileID: 8300000, guid: 6569bbcfaa9222144b962fdaa857b8ce, type: 3}
+  breakSE: {fileID: 8300000, guid: 6569bbcfaa9222144b962fdaa857b8ce, type: 3}
+  attackSE: {fileID: 8300000, guid: 1e6ba4437dd3ce6479252c7a5f43c67c, type: 3}
+  HPfull: {fileID: 21300000, guid: 16a48a06d5d0a004f9812e2ca3cfab87, type: 3}
+  HP50per: {fileID: 21300000, guid: 9ddeeda707e9ad54082d7479ec31dafb, type: 3}
+  HP25per: {fileID: 21300000, guid: d4e636a9bd1f40240a1af8904cfe647a, type: 3}
+  HP0: {fileID: 21300000, guid: ab46d715efc26e04e8c4f456deb4c34d, type: 3}
 --- !u!82 &7228253293049515585
 AudioSource:
   m_ObjectHideFlags: 0
@@ -237,7 +242,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

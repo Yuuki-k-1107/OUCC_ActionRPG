@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float liftForce = 500.0f;
     public float moveForce = 25.0f;
     public float limitspeed = 5.0f;
+    //public AudioClip SE;
     public static int curHP;
     public static int maxHP = 100;
     public static int Level = 1;
@@ -28,9 +29,12 @@ public class PlayerController : MonoBehaviour
     private int wmode;
     private int maxWeaponKind = 2;
 
+    //AudioSource PlayerAudioSource
+
     // Start is called before the first frame update
     void Start()
     {
+        //GetComponent<AudioSource>();
         this.Rig2D = GetComponent<Rigidbody2D>();
         //maxHP = 100;
         curHP = maxHP;

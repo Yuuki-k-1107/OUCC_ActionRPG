@@ -159,6 +159,10 @@ MonoBehaviour:
   attackObj: {fileID: 2375220296600071857}
   interval: 2
   clip: {fileID: 8300000, guid: 6569bbcfaa9222144b962fdaa857b8ce, type: 3}
+  shotSE: {fileID: 8300000, guid: a0ca7b11e90eaad42980c1e54a3682cf, type: 3}
+  HPfull: {fileID: 21300000, guid: 90b8ddadfb9eac74bbf3c6d54851024b, type: 3}
+  HP50per: {fileID: 21300000, guid: 751ee6d3f0e4b3044b6ec5340ad1e890, type: 3}
+  HP25per: {fileID: 21300000, guid: 33f8b7b06a749ba4fb50e21552418467, type: 3}
 --- !u!82 &4795937287019923470
 AudioSource:
   m_ObjectHideFlags: 0
@@ -170,7 +174,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

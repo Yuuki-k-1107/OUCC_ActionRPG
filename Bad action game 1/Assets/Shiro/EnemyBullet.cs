@@ -7,6 +7,7 @@ public class EnemyBullet : MonoBehaviour
     [Header("スピード")] public float speed = 3.0f;
     [Header("最大移動距離")] public float maxDistance = 100.0f;
     [Header("弾丸威力")] public int bulletAttack = 5;
+    [Header("ヒットSE")]public AudioClip PlayerDamagedSE;
 //    [Header("左向き")] public bool isLeft = false;
 
     private Rigidbody2D rb;
@@ -14,11 +15,14 @@ public class EnemyBullet : MonoBehaviour
     private Animator anim = null;
     private bool mark = false;
 
+    //AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        //audioSource = GetComponent<AudioSource>();
         if (rb == null)
         {
             Debug.Log("設定が足りません");
@@ -63,7 +67,11 @@ public class EnemyBullet : MonoBehaviour
                 Debug.Log("Hit");
                 if(collision.gameObject.tag == "Player")
                 {
-                    if ((bulletAttack > PlayerController.Defense) && !PlayerController.isInvincible) PlayerController.curHP -= (this.bulletAttack - PlayerController.Defense);
+                    if ((bulletAttack > PlayerController.Defense) && !PlayerController.isInvincible)
+                    {
+                        PlayerController.curHP -= (this.bulletAttack - PlayerController.Defense);
+                        AudioSource.PlayClipAtPoint(clip: PlayerDamagedSE, position: this.transform.position, volume:0.5F);
+                    }
                 }
             }
             Destroy(this.gameObject);

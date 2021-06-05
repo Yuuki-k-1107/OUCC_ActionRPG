@@ -17,6 +17,10 @@ public class EnemyGun : MonoBehaviour
     [Header("攻撃オブジェクト")] public GameObject attackObj;
     [Header("攻撃間隔")] public float interval;
     [Header("撃破SE")] public AudioClip clip;
+    [Header("射撃SE")] public AudioClip shotSE;
+    [Header("画像差分")] public Sprite HPfull;
+    public Sprite HP50per;
+    public Sprite HP25per;
     #endregion
 
     #region//プライベート変数
@@ -31,8 +35,10 @@ public class EnemyGun : MonoBehaviour
     private float moveTimer = 0.0f;
     private bool timeToBack;
     private float timer;
+    private int DefaultEnemHP;
 
     AudioSource audioSource;
+    SpriteRenderer spriteRenderer;
     #endregion
 
     // Start is called before the first frame update
@@ -44,20 +50,38 @@ public class EnemyGun : MonoBehaviour
         oc = GetComponent<ObjectCollision>();
         col = GetComponent<BoxCollider2D>();
         audioSource = GetComponent<AudioSource>();
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        DefaultEnemHP = EnemHP;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "PlayerShot")
         {
 
-            if (PlayerController.Attack > enemyDefense) EnemHP -= (PlayerController.Attack - this.enemyDefense);
+            if (PlayerController.Attack > enemyDefense)
+            {
+                EnemHP -= (PlayerController.Attack - this.enemyDefense);
+            }
             else EnemHP--; //詰み防止のために1ダメージを与えられるようにする
-
+            if ((float)EnemHP / (float)DefaultEnemHP > 0.5)
+            {
+                spriteRenderer.sprite = HPfull;
+            }
+            else if ((float)EnemHP / (float)DefaultEnemHP > 0.25)
+            {
+                spriteRenderer.sprite = HP50per;
+            }
+            else if ((float)EnemHP / (float)DefaultEnemHP >0)
+            {
+                spriteRenderer.sprite = HP25per;
+            }
         }
-
         if (collision.gameObject.tag == "Player")
         {
-            if ((enemyAttack > PlayerController.Defense) && !PlayerController.isInvincible) PlayerController.curHP -= (this.enemyAttack - PlayerController.Defense);
+            if ((enemyAttack > PlayerController.Defense) && !PlayerController.isInvincible)
+            {
+                PlayerController.curHP -= (this.enemyAttack - PlayerController.Defense);
+            }
         }
     }
     void FixedUpdate()
@@ -107,6 +131,7 @@ public class EnemyGun : MonoBehaviour
             g.transform.SetParent(transform);
             g.transform.position = attackObj.transform.position;
             g.SetActive(true);
+            audioSource.PlayOneShot(shotSE, 0.01F);
         }
         else
         {
@@ -120,7 +145,7 @@ public class EnemyGun : MonoBehaviour
                 //                anim.Play("dead");
                 isDead = true;
                 col.enabled = false;
-                audioSource.PlayOneShot(clip);
+                audioSource.PlayOneShot(clip, 0.8F);
             }
             else
             {

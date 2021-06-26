@@ -19,6 +19,8 @@ TagManager:
   - 1-2
   - Door
   - Teleport
+  - PlayerCloseAttack
+  - burst
   layers:
   - Default
   - TransparentFX

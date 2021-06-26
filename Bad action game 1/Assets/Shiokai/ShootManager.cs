@@ -13,8 +13,15 @@ public class ShootManager : MonoBehaviour
     [Header("発射間隔arrow")] public float cltm_arrow;//クールタイム
     [Header("弾丸arrow")] public GameObject bulObj_arrow;//bullet object
                                             //    [Header("弾速")] public float blspd = 3.0f;
-    [Header("発射アニメarrpw")] public string stanim_arrow;//shoot anime
+    [Header("発射アニメarrow")] public string stanim_arrow;//shoot anime
     [Header("発射点")] public GameObject stmrk;
+
+    
+    [Header("発射アニメexplosionGun")] public string stanim_expGun;
+    [Header("発射間隔explosionGun")] public float cltm_expGun;
+    [Header("弾丸explosionGun")] public GameObject bulObj_expGun;
+    
+
     //    private Vector3 stpos;
     private Animator anim = null;
     //    private Rigidbody2D rb = null;
@@ -42,11 +49,21 @@ public class ShootManager : MonoBehaviour
                 bulObj = bulObj_gun;
                 stanim = stanim_gun;
                 anim.SetBool(stanim_arrow, false);
+                anim.SetBool(stanim_expGun, false);
                 break;
             case 2:
                 cltm = cltm_arrow;
                 bulObj = bulObj_arrow;
                 stanim = stanim_arrow;
+                anim.SetBool(stanim_gun, false);
+                anim.SetBool(stanim_expGun, false);
+                break;
+
+            case 3:
+                cltm = cltm_expGun;
+                bulObj = bulObj_expGun;
+                stanim = stanim_expGun;
+                anim.SetBool(stanim_arrow, false);
                 anim.SetBool(stanim_gun, false);
                 break;
             default:
@@ -80,7 +97,7 @@ public class ShootManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space) && ready)
             {
-
+                
                 shot = true;
                 ready = false;
                 //            stpos = stmrk.transform.position;//マーカーの位置を取得

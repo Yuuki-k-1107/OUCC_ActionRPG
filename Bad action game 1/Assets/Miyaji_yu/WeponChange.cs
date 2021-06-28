@@ -29,42 +29,42 @@ public class WeponChange : MonoBehaviour
             }
             if (count <= shootWeponCount)
             {
-                WepomIndexContainer.ShootWeponIndex = count;
-                WepomIndexContainer.CloseWeponIndex = 0;
+                WeponIndexContainer.ShootWeponIndex = count;
+                WeponIndexContainer.CloseWeponIndex = 0;
             }
             else
             {
-                WepomIndexContainer.CloseWeponIndex = count - shootWeponCount;
-                WepomIndexContainer.ShootWeponIndex = 0;
+                WeponIndexContainer.CloseWeponIndex = count - shootWeponCount;
+                WeponIndexContainer.ShootWeponIndex = 0;
             }
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if(WepomIndexContainer.CloseWeponIndex > 0)
+            if(WeponIndexContainer.CloseWeponIndex > 0)
             {
-                WepomIndexContainer.CloseWeponIndex = 0;
+                WeponIndexContainer.CloseWeponIndex = 0;
             }
-            WepomIndexContainer.ShootWeponIndex++;
+            WeponIndexContainer.ShootWeponIndex++;
             Debug.Log("武器変えたよ");
-            if(WepomIndexContainer.ShootWeponIndex > shootWeponCount)
+            if(WeponIndexContainer.ShootWeponIndex > shootWeponCount)
             {
-                WepomIndexContainer.ShootWeponIndex = 1;
+                WeponIndexContainer.ShootWeponIndex = 1;
             }
-            count = WepomIndexContainer.ShootWeponIndex;
+            count = WeponIndexContainer.ShootWeponIndex;
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (WepomIndexContainer.ShootWeponIndex > 0)
+            if (WeponIndexContainer.ShootWeponIndex > 0)
             {
-                WepomIndexContainer.ShootWeponIndex = 0;
+                WeponIndexContainer.ShootWeponIndex = 0;
             }
-            WepomIndexContainer.CloseWeponIndex++;
+            WeponIndexContainer.CloseWeponIndex++;
             Debug.Log("武器変えたよ");
-            if (WepomIndexContainer.CloseWeponIndex > closeWeponCount)
+            if (WeponIndexContainer.CloseWeponIndex > closeWeponCount)
             {
-                WepomIndexContainer.CloseWeponIndex = 1;
+                WeponIndexContainer.CloseWeponIndex = 1;
             }
-            count = WepomIndexContainer.CloseWeponIndex + shootWeponCount;
+            count = WeponIndexContainer.CloseWeponIndex + shootWeponCount;
         }
     }
 }

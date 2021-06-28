@@ -55,7 +55,7 @@ public class CloseAttackManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        wepindex = WepomIndexContainer.CloseWeponIndex;
+        wepindex = WeponIndexContainer.CloseWeponIndex;
         
         SetCurrentParamOfWeponIndex(wepindex);
         /*if(PlayerController.speed > 0)
@@ -66,7 +66,7 @@ public class CloseAttackManager : MonoBehaviour
         {
             direction = -1;
         }*/
-        if (WepomIndexContainer.CloseWeponIndex > 0)
+        if (WeponIndexContainer.CloseWeponIndex > 0)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {

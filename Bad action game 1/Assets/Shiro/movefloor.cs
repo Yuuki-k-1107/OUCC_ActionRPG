@@ -6,7 +6,7 @@ public class movefloor : MonoBehaviour
 {
     [Header("移動経路")] public GameObject[] movePoint;
     [Header("速さ")] public float speed = 1.0f;
-    private Rigidbody2D rb;
+    private Rigidbody2D rb = null;
     private int nowPoint = 0;
     private bool returnPoint = false;
     // Start is called before the first frame update
@@ -22,17 +22,23 @@ public class movefloor : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if (movePoint != null && movePoint.Length > 1 && rb != null) {
+        if (movePoint != null && movePoint.Length > 1 && rb != null) {   
+            //通常進行
             if (!returnPoint) {
                 int nextPoint = nowPoint + 1;
+                //目標のポイントとの距離の差がわずかになるまで移動
                 if (Vector2.Distance(transform.position, movePoint[nextPoint].transform.position) > 0.1f)
                 {
+                    //現在地から次のポイントへのベクトルを作成
                     Vector2 toVector = Vector2.MoveTowards(transform.position, movePoint[nextPoint].transform.position, speed * Time.deltaTime);
+                    //次のポイントへ移動
                     rb.MovePosition(toVector);
                 }
+                // <= 0.1fの場合
                 else {
                     rb.MovePosition(movePoint[nextPoint].transform.position);
                     ++nowPoint;
+                    //現在地が配列の最後の場合
                     if (nowPoint + 1 >= movePoint.Length)
                     {
                         returnPoint = true;
@@ -42,7 +48,8 @@ public class movefloor : MonoBehaviour
             else
             {
                 int nextPoint = nowPoint - 1;
-                if (Vector2.Distance(transform.position, movePoint[nextPoint].transform.position) > 0.1f){
+                if (Vector2.Distance(transform.position, movePoint[nextPoint].transform.position) > 0.1f)
+                {
                     Vector2 toVector = Vector2.MoveTowards(transform.position, movePoint[nextPoint].transform.position, speed * Time.deltaTime);
                     rb.MovePosition(toVector);
                 }

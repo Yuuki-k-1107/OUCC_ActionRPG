@@ -89,7 +89,7 @@ public class ShootManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        wepindex = WepomIndexContainer.ShootWeponIndex;
+        wepindex = WeponIndexContainer.ShootWeponIndex;
 
         SetCurrentParamOfWeponIndex(wepindex);
 

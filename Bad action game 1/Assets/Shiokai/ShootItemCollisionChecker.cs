@@ -13,7 +13,7 @@ public class ShootItemCollisionChecker : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            WepomIndexContainer.ShootWeponIndex = this.ShootWeponIndex;
+            WeponIndexContainer.ShootWeponIndex = this.ShootWeponIndex;
         }
 
     }

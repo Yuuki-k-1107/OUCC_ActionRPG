@@ -55,7 +55,7 @@ public class CloseAttackManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        wepindex = WepomIndexContainer.CloseWeponIndex;
+        wepindex = WeponIndexContainer.CloseWeponIndex;
         
         SetCurrentParamOfWeponIndex(wepindex);
         /*if(PlayerController.speed > 0)
@@ -66,18 +66,20 @@ public class CloseAttackManager : MonoBehaviour
         {
             direction = -1;
         }*/
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (WeponIndexContainer.CloseWeponIndex > 0)
         {
-            anim.SetBool(stanim, true);
-            cltrans = this.transform.position;
-            cltrans.x += (float)direction;
-            GameObject attack = Instantiate(clmrk, cltrans, this.transform.rotation) as GameObject;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                anim.SetBool(stanim, true);
+                cltrans = this.transform.position;
+                cltrans.x += (float)direction;
+                GameObject attack = Instantiate(clmrk, cltrans, this.transform.rotation) as GameObject;
+            }
+            else
+            {
+                anim.SetBool(stanim, false);
+            }
         }
-        else
-        {
-            anim.SetBool(stanim, false);
-        }
-            
             //        rb = GetComponent<Rigidbody2D>();
         
 

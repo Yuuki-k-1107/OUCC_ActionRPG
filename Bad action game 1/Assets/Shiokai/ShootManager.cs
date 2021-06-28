@@ -36,11 +36,11 @@ public class ShootManager : MonoBehaviour
     private string stanim;
 
 
-    private int wepindex = 0;
+    private int weapindex = 0;
 
 
 
-    private void SetCurrentParamOfWeponIndex(int id)
+    private void SetCurrentParamOfWeaponIndex(int id)
     {
         switch(id)
         {
@@ -89,11 +89,11 @@ public class ShootManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        wepindex = WeponIndexContainer.ShootWeponIndex;
+        weapindex = WeaponIndexContainer.ShootWeaponIndex;
 
-        SetCurrentParamOfWeponIndex(wepindex);
+        SetCurrentParamOfWeaponIndex(weapindex);
 
-        if (wepindex != 0)
+        if (weapindex != 0)
         {
             if (Input.GetKeyDown(KeyCode.Space) && ready)
             {

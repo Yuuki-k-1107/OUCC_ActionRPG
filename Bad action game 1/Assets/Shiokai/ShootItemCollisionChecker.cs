@@ -7,13 +7,13 @@ public class ShootItemCollisionChecker : MonoBehaviour
 
     // このオブジェクトに触れたときに取得する近接武器のindex
     [SerializeField]
-    [Header("遠距離武器のid")]private int ShootWeponIndex;
+    [Header("遠距離武器のid")]private int ShootWeaponIndex;
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
-            WeponIndexContainer.ShootWeponIndex = this.ShootWeponIndex;
+            WeaponIndexContainer.ShootWeaponIndex = this.ShootWeaponIndex;
         }
 
     }

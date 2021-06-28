@@ -17,11 +17,11 @@ public class CloseAttackManager : MonoBehaviour
     private string stanim;
     private Vector3 cltrans;
     private int direction;
-    private int wepindex = 0;
+    private int weapindex = 0;
 
 
 
-    private void SetCurrentParamOfWeponIndex(int id)
+    private void SetCurrentParamOfWeaponIndex(int id)
     {
         switch(id)
         {
@@ -55,9 +55,9 @@ public class CloseAttackManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        wepindex = WeponIndexContainer.CloseWeponIndex;
+        weapindex = WeaponIndexContainer.CloseWeaponIndex;
         
-        SetCurrentParamOfWeponIndex(wepindex);
+        SetCurrentParamOfWeaponIndex(weapindex);
         /*if(PlayerController.speed > 0)
         {
             direction = 1;
@@ -66,7 +66,7 @@ public class CloseAttackManager : MonoBehaviour
         {
             direction = -1;
         }*/
-        if (WeponIndexContainer.CloseWeponIndex > 0)
+        if (WeaponIndexContainer.CloseWeaponIndex > 0)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {

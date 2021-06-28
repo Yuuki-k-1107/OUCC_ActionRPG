@@ -7,13 +7,13 @@ public class CloseAttackItemCollisionChecker : MonoBehaviour
 
     // このオブジェクトに触れたときに取得する近接武器のindex
     [SerializeField]
-    [Header("近接武器のid")]private int CloseWeponIndex;
+    [Header("近接武器のid")]private int CloseWeaponIndex;
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
-            WeponIndexContainer.CloseWeponIndex = this.CloseWeponIndex;
+            WeaponIndexContainer.CloseWeaponIndex = this.CloseWeaponIndex;
         }
 
     }

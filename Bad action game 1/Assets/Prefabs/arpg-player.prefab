@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 1892300088276350517}
   - component: {fileID: 1001442430397939913}
   - component: {fileID: 6381258997718666355}
+  - component: {fileID: 8445851355988048581}
   m_Layer: 0
   m_Name: arpg-player
   m_TagString: Player
@@ -221,7 +222,6 @@ MonoBehaviour:
   liftForce: 500
   moveForce: 25
   limitspeed: 5
-  damagedSE: {fileID: 0}
 --- !u!95 &1892300088276350518
 Animator:
   serializedVersion: 3
@@ -320,6 +320,10 @@ MonoBehaviour:
     type: 3}
   stanim_arrow: ShotBow
   stmrk: {fileID: 1892300088753638855}
+  stanim_expGun: ShotExpGun
+  cltm_expGun: 0.5
+  bulObj_expGun: {fileID: 7768657869945406586, guid: e76bc8f369f33524faad7b36f7db1bac,
+    type: 3}
 --- !u!114 &6381258997718666355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,6 +338,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stanim_spear: Spear
   stanim_bat: Bat
+  clmrk: {fileID: 336576323085331828, guid: ae8b1e6304c47f64080e3270c8cbf8c8, type: 3}
+--- !u!114 &8445851355988048581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892300088276350524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbbb07f08a4cfc64d84cd9b7125bf636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1892300088753638855
 GameObject:
   m_ObjectHideFlags: 0

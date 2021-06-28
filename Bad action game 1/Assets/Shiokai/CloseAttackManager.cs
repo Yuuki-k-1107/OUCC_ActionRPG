@@ -10,12 +10,13 @@ public class CloseAttackManager : MonoBehaviour
     [Header("攻撃アニメspear")] public string stanim_spear;
    
     [Header("攻撃アニメbat")] public string stanim_bat;
+    [Header("当たり判定")] public GameObject clmrk;
     private Animator anim = null;
     //    private Rigidbody2D rb = null;
 
     private string stanim;
-
-
+    private Vector3 cltrans;
+    private int direction;
     private int wepindex = 0;
 
 
@@ -48,23 +49,34 @@ public class CloseAttackManager : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        direction = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
         wepindex = WepomIndexContainer.CloseWeponIndex;
-
+        
         SetCurrentParamOfWeponIndex(wepindex);
-
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                anim.SetBool(stanim, true);
-            }
-            else
-            {
-                anim.SetBool(stanim, false);
-            }
+        /*if(PlayerController.speed > 0)
+        {
+            direction = 1;
+        }
+        else if (PlayerController.speed < 0)
+        {
+            direction = -1;
+        }*/
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            anim.SetBool(stanim, true);
+            cltrans = this.transform.position;
+            cltrans.x += (float)direction;
+            GameObject attack = Instantiate(clmrk, cltrans, this.transform.rotation) as GameObject;
+        }
+        else
+        {
+            anim.SetBool(stanim, false);
+        }
             
             //        rb = GetComponent<Rigidbody2D>();
         

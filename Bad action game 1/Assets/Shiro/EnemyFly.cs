@@ -52,6 +52,7 @@ public class EnemyFly : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        /*
         if (collision.gameObject.tag == "PlayerShot")
         {
 
@@ -86,6 +87,23 @@ public class EnemyFly : MonoBehaviour
         else if (collision.gameObject.tag == "bat" || collision.gameObject.tag == "spear")
         {
             EnemHP -= PlayerController.Attack*PlayerController.Attack;
+        }*/
+        int rHP = damageManager.Damage(collision.gameObject.tag, EnemHP, enemyAttack, enemyDefense);
+        if (rHP >= 0)
+        {
+            EnemHP = rHP;
+            if ((float)EnemHP / (float)DefaultEnemHP > 0.5)
+            {
+                spriteRenderer.sprite = HPfull;
+            }
+            else if ((float)EnemHP / (float)DefaultEnemHP > 0.25)
+            {
+                spriteRenderer.sprite = HP50per;
+            }
+            else if ((float)EnemHP / (float)DefaultEnemHP > 0)
+            {
+                spriteRenderer.sprite = HP25per;
+            }
         }
     }
     void FixedUpdate()

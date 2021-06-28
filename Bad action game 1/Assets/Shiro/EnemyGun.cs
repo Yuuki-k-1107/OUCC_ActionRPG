@@ -55,9 +55,10 @@ public class EnemyGun : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        /*
         if (collision.gameObject.tag == "PlayerShot")
         {
-
+            
             if (PlayerController.Attack > enemyDefense)
             {
                 EnemHP -= (PlayerController.Attack - this.enemyDefense);
@@ -81,6 +82,24 @@ public class EnemyGun : MonoBehaviour
             if ((enemyAttack > PlayerController.Defense) && !PlayerController.isInvincible)
             {
                 PlayerController.curHP -= (this.enemyAttack - PlayerController.Defense);
+            }
+        }
+        */
+        int rHP = damageManager.Damage(collision.gameObject.tag, EnemHP, enemyAttack, enemyDefense);
+        if (rHP >= 0)
+        {
+            EnemHP = rHP;
+            if ((float)EnemHP / (float)DefaultEnemHP > 0.5)
+            {
+                spriteRenderer.sprite = HPfull;
+            }
+            else if ((float)EnemHP / (float)DefaultEnemHP > 0.25)
+            {
+                spriteRenderer.sprite = HP50per;
+            }
+            else if ((float)EnemHP / (float)DefaultEnemHP > 0)
+            {
+                spriteRenderer.sprite = HP25per;
             }
         }
     }

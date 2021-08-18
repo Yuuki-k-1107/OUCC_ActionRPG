@@ -14,13 +14,17 @@ public class ShootManager : MonoBehaviour
     [Header("弾丸arrow")] public GameObject bulObj_arrow;//bullet object
                                             //    [Header("弾速")] public float blspd = 3.0f;
     [Header("発射アニメarrow")] public string stanim_arrow;//shoot anime
-    [Header("発射点")] public GameObject stmrk;
-
     
     [Header("発射アニメexplosionGun")] public string stanim_expGun;
     [Header("発射間隔explosionGun")] public float cltm_expGun;
     [Header("弾丸explosionGun")] public GameObject bulObj_expGun;
-    
+
+    [Header("爆弾投げ")]
+    [Tooltip("arpg-playerのアニメーターで使われている\nアニメーションの名前")] public string stanim_bomb;
+    [Tooltip("クールタイム")] public float cltm_bomb;
+    [Tooltip("発射するオブジェクト")] public GameObject bulObj_bomb;
+    [Header("発射点")] public GameObject stmrk;
+
 
     //    private Vector3 stpos;
     private Animator anim = null;
@@ -50,6 +54,7 @@ public class ShootManager : MonoBehaviour
                 stanim = stanim_gun;
                 anim.SetBool(stanim_arrow, false);
                 anim.SetBool(stanim_expGun, false);
+                anim.SetBool(stanim_bomb, false);
                 break;
             case 2:
                 cltm = cltm_arrow;
@@ -57,6 +62,7 @@ public class ShootManager : MonoBehaviour
                 stanim = stanim_arrow;
                 anim.SetBool(stanim_gun, false);
                 anim.SetBool(stanim_expGun, false);
+                anim.SetBool(stanim_bomb, false);
                 break;
 
             case 3:
@@ -65,6 +71,15 @@ public class ShootManager : MonoBehaviour
                 stanim = stanim_expGun;
                 anim.SetBool(stanim_arrow, false);
                 anim.SetBool(stanim_gun, false);
+                anim.SetBool(stanim_bomb, false);
+                break;
+            case 4:
+                cltm = cltm_bomb;
+                bulObj = bulObj_bomb;
+                stanim = stanim_bomb;
+                anim.SetBool(stanim_arrow, false);
+                anim.SetBool(stanim_gun, false);
+                anim.SetBool(stanim_expGun, false);
                 break;
             default:
                 cltm = 0;

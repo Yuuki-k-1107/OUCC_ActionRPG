@@ -319,11 +319,15 @@ MonoBehaviour:
   bulObj_arrow: {fileID: 8981239517265870560, guid: 60670a833d876a34b806963571fea72b,
     type: 3}
   stanim_arrow: ShotBow
-  stmrk: {fileID: 1892300088753638855}
   stanim_expGun: ShotExpGun
   cltm_expGun: 0.5
   bulObj_expGun: {fileID: 7768657869945406586, guid: e76bc8f369f33524faad7b36f7db1bac,
     type: 3}
+  stanim_bomb: unitychan_bomb
+  cltm_bomb: 0.1
+  bulObj_bomb: {fileID: 6213484488994731210, guid: b933e32b8770b6b4d99bbf4a86b10ce4,
+    type: 3}
+  stmrk: {fileID: 1892300088753638855}
 --- !u!114 &6381258997718666355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +355,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbbb07f08a4cfc64d84cd9b7125bf636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootWeaponCount: 4
+  closeWeaponCount: 2
 --- !u!1 &1892300088753638855
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class WeaponChange : MonoBehaviour
 {
-    
-    [Header("遠距離武器の数")] public static int shootWeaponCount = 3;
-    [Header("近距離武器の数")] public static int closeWeaponCount = 2;
+    [SerializeField] [Header("遠距離武器の数")] private int shootWeaponCount = 4;
+    [SerializeField] [Header("近距離武器の数")] private int closeWeaponCount = 2;
     private int weaponCount;
-    public static int count;
+    private int count;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +44,7 @@ public class WeaponChange : MonoBehaviour
                 WeaponIndexContainer.CloseWeaponIndex = 0;
             }
             WeaponIndexContainer.ShootWeaponIndex++;
+            Debug.Log(WeaponIndexContainer.ShootWeaponIndex);
             Debug.Log("武器変えたよ");
             if(WeaponIndexContainer.ShootWeaponIndex > shootWeaponCount)
             {

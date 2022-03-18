@@ -3,79 +3,81 @@ using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
 
+using static WeaponIndexContainer;
+
 public class ShootManager : MonoBehaviour
 {
     
-    [Header("発射間隔gun")] public float cltm_gun;//クールタイム
-    [Header("弾丸gun")] public GameObject bulObj_gun;//bullet object
+    [Header("発射間隔gun")] private readonly float cltm_gun = 0.3f;//クールタイム
+    [SerializeField][Header("弾丸gun")] private GameObject bulObj_gun;//bullet object
                                             //    [Header("弾速")] public float blspd = 3.0f;
-    [Header("発射アニメgun")] public string stanim_gun;//shoot anime
-    [Header("発射間隔arrow")] public float cltm_arrow;//クールタイム
-    [Header("弾丸arrow")] public GameObject bulObj_arrow;//bullet object
+    [Header("発射アニメgun")] private readonly string stanim_gun = "ShotGun";//shoot anime
+    [Header("発射間隔arrow")] private readonly float cltm_arrow = 0.7f;//クールタイム
+    [SerializeField][Header("弾丸arrow")] private GameObject bulObj_arrow;//bullet object
                                             //    [Header("弾速")] public float blspd = 3.0f;
-    [Header("発射アニメarrow")] public string stanim_arrow;//shoot anime
-    [Header("発射点")] public GameObject stmrk;
+    [Header("発射アニメarrow")] private readonly string stanim_arrow = "ShotBow";//shoot anime
+    [SerializeField][Header("発射点")] private GameObject stmrk;
 
     
-    [Header("発射アニメexplosionGun")] public string stanim_expGun;
-    [Header("発射間隔explosionGun")] public float cltm_expGun;
-    [Header("弾丸explosionGun")] public GameObject bulObj_expGun;
+    [Header("発射アニメexplosionGun")] private readonly string stanim_expGun = "ShotExpGun";
+    [Header("発射間隔explosionGun")] private readonly float cltm_expGun = 0.5f;
+    [SerializeField][Header("弾丸explosionGun")] private GameObject bulObj_expGun;
     
 
-    //    private Vector3 stpos;
+
     private Animator anim = null;
-    //    private Rigidbody2D rb = null;
-    private bool shot = false;
-    private float count;//タイマー
-    private bool ready = true;//再装填完了
-    private float count2;
+    private bool hasShootWeapon;
 
-    // public int shootIndex = 0;
-    private float cltm;
-    private GameObject bulObj;
-    private string stanim;
-
-
-    private int weapindex = 0;
-
-
-
-    private void SetCurrentParamOfWeaponIndex(int id)
+    private class BulletComposition
     {
-        switch(id)
-        {
-            case 1:
-                cltm = cltm_gun;
-                bulObj = bulObj_gun;
-                stanim = stanim_gun;
-                anim.SetBool(stanim_arrow, false);
-                anim.SetBool(stanim_expGun, false);
-                break;
-            case 2:
-                cltm = cltm_arrow;
-                bulObj = bulObj_arrow;
-                stanim = stanim_arrow;
-                anim.SetBool(stanim_gun, false);
-                anim.SetBool(stanim_expGun, false);
-                break;
-
-            case 3:
-                cltm = cltm_expGun;
-                bulObj = bulObj_expGun;
-                stanim = stanim_expGun;
-                anim.SetBool(stanim_arrow, false);
-                anim.SetBool(stanim_gun, false);
-                break;
-            default:
-                cltm = 0;
-                bulObj = null;
-                stanim = null;
-                break;
-        }
+        public float CoolTime{get; set;}
+        public GameObject BulletObject{get; set;}
+        public string AnimParam{get; set;}
     }
 
 
+    private IEnumerator ShootCoroutine()
+    {
+        while (true)
+        {
+            yield return new WaitUntil(() => hasShootWeapon && Input.GetKeyDown(KeyCode.Space));
 
+            var bullet = Shoot();
+            anim.SetBool(bullet.AnimParam, true);
+
+            yield return new WaitForSeconds(bullet.CoolTime);
+
+            anim.SetBool(bullet.AnimParam, false);
+        }
+
+    }
+
+    private BulletComposition Shoot()
+    {
+        uint weaponIndex = ShootWeaponIndex;
+        var bullet = weaponIndex switch
+        {
+            (uint)ShootWeapon.Arrow => new BulletComposition{CoolTime = cltm_gun,
+                                        BulletObject = bulObj_gun,
+                                        AnimParam = stanim_gun,},
+            (uint)ShootWeapon.Gun => new BulletComposition{CoolTime = cltm_arrow,
+                                        BulletObject = bulObj_arrow,
+                                        AnimParam = stanim_arrow,},
+            (uint)ShootWeapon.ExpGun => new BulletComposition{CoolTime = cltm_expGun,
+                                        BulletObject = bulObj_expGun,
+                                        AnimParam = stanim_expGun,},
+            _ => new BulletComposition{CoolTime = 0,
+                                        BulletObject = null,
+                                        AnimParam = "",}
+        };
+
+        if (bullet.BulletObject != null)
+        {
+            Instantiate(bullet.BulletObject, stmrk.transform.position, Quaternion.identity);
+        }
+        return bullet;
+
+    }
 
 
 
@@ -84,61 +86,13 @@ public class ShootManager : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        StartCoroutine(ShootCoroutine());
     }
 
     // Update is called once per frame
     void Update()
     {
-        weapindex = WeaponIndexContainer.ShootWeaponIndex;
-
-        SetCurrentParamOfWeaponIndex(weapindex);
-
-        if (weapindex != 0)
-        {
-            if (Input.GetKeyDown(KeyCode.Space) && ready)
-            {
-                
-                shot = true;
-                ready = false;
-                //            stpos = stmrk.transform.position;//マーカーの位置を取得
-                //                GameObject bullets = Instantiate(bulObj, stmrk.transform.position, Quaternion.identity) as GameObject;//マーカーと同じ位置に弾を生成
-
-            }
-            else
-            {
-                //            shot = false;
-            }
-
-
-            if (ready == false)
-            {
-                count += Time.deltaTime;
-                if (count >= cltm)
-                {
-                    count = 0.0f;
-                    GameObject bullets = Instantiate(bulObj, stmrk.transform.position, Quaternion.identity) as GameObject;
-                    ready = true;
-                }
-            }
-            if (ready)
-            {
-                count2 += Time.deltaTime;
-                if (count2 >= cltm)
-                {
-                    count2 = 0.0f;
-                    if (ready)
-                    {
-                        shot = false;
-                    }
-                }
-            }
-            // anim = GetComponent<Animator>();
-
-            anim.SetBool(stanim, shot);
-            //        rb = GetComponent<Rigidbody2D>();
-        }
-
-
+        hasShootWeapon = ShootWeaponIndex != (uint)ShootWeapon.None && WeaponTypeIndex == (uint)WeaponType.Shoot;
     }
 }
 

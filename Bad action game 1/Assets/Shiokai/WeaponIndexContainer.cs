@@ -6,8 +6,31 @@ public class WeaponIndexContainer
 {
 
 
-    public static int CloseWeaponIndex = 0;
-    public static int ShootWeaponIndex = 0;
+    public static uint CloseWeaponIndex{get; set;} = 0;
+
+    public enum CloseWeapon
+    {
+        None,
+        Spear,
+        Bat
+    }
+    public static uint ShootWeaponIndex{get; set;} = 0;
+    public enum ShootWeapon
+    {
+        None,
+        Arrow,
+        Gun,
+        ExpGun
+    }
+
+    public static uint WeaponTypeIndex{get; set;} = 0;
+
+    public enum WeaponType
+    {
+        None,
+        Close,
+        Shoot
+    }
 
 
 }

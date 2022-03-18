@@ -3,44 +3,71 @@ using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
 
+using static WeaponIndexContainer;
+
 public class CloseAttackManager : MonoBehaviour
 {
     
 
-    [Header("攻撃アニメspear")] public string stanim_spear;
+    [Header("攻撃アニメspear")] private readonly string stanim_spear = "Spear";
+    private readonly float coolTime_spear = 0.15f;
    
-    [Header("攻撃アニメbat")] public string stanim_bat;
-    [Header("当たり判定")] public GameObject clmrk;
+    [Header("攻撃アニメbat")] private readonly string stanim_bat = "Bat";
+    private readonly float coolTime_bat = 0.19f;
+    [SerializeField][Header("当たり判定")] private GameObject clmrk;
     private Animator anim = null;
     //    private Rigidbody2D rb = null;
 
-    private string stanim;
-    private Vector3 cltrans;
-    private int direction;
-    private int weapindex = 0;
+    // private Vector3 cltrans;
+    // private readonly int direction = 1;
+    private bool hasCloseWeapon;
 
-
-
-    private void SetCurrentParamOfWeaponIndex(int id)
+    private class CloseWeaponComposition
     {
-        switch(id)
-        {
-            case 1:
-                stanim = stanim_spear;
-                anim.SetBool(stanim_bat, false);
-                break;
-            case 2:
-                stanim = stanim_bat;
-                anim.SetBool(stanim_spear, false);
-                break;
-            default:
-                stanim = null;
-                break;
-        }
+        public float CoolTime{get; set;}
+        public GameObject ColliderObject{get; set;}
+        public string AnimParam{get; set;}
     }
 
+    private IEnumerator AttackCoroutine()
+    {
+        while (true)
+        {
+            yield return new WaitUntil(() => hasCloseWeapon && Input.GetKeyDown(KeyCode.Space));
+        
+            var closeWeapon = Attack();
+            anim.SetBool(closeWeapon.AnimParam, true);
 
+            yield return new WaitForSeconds(closeWeapon.CoolTime);
 
+            anim.SetBool(closeWeapon.AnimParam, false);
+        }
+
+    }
+
+    private CloseWeaponComposition Attack()
+    {
+        uint weaponIndex = CloseWeaponIndex;
+        var closeWeapon = weaponIndex switch
+        {
+            (uint)CloseWeapon.Bat => new CloseWeaponComposition{CoolTime = coolTime_bat,
+                                                                ColliderObject = clmrk,
+                                                                AnimParam = stanim_bat},
+            (uint)CloseWeapon.Spear => new CloseWeaponComposition{CoolTime = coolTime_spear,
+                                                                ColliderObject = clmrk,
+                                                                AnimParam = stanim_spear},
+            _ => new CloseWeaponComposition{CoolTime = 0,
+                                            ColliderObject = null,
+                                            AnimParam = "",}
+        };
+        if (closeWeapon.ColliderObject != null)
+        {
+            var cltrans = transform.position + Vector3.right;
+            // cltrans.x += direction;
+            Instantiate(clmrk, cltrans, transform.rotation);
+        }
+        return closeWeapon;
+    }
 
 
 
@@ -49,41 +76,14 @@ public class CloseAttackManager : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        direction = 1;
+        // direction = 1;
+        StartCoroutine(AttackCoroutine());
     }
 
     // Update is called once per frame
     void Update()
     {
-        weapindex = WeaponIndexContainer.CloseWeaponIndex;
-        
-        SetCurrentParamOfWeaponIndex(weapindex);
-        /*if(PlayerController.speed > 0)
-        {
-            direction = 1;
-        }
-        else if (PlayerController.speed < 0)
-        {
-            direction = -1;
-        }*/
-        if (WeaponIndexContainer.CloseWeaponIndex > 0)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                anim.SetBool(stanim, true);
-                cltrans = this.transform.position;
-                cltrans.x += (float)direction;
-                GameObject attack = Instantiate(clmrk, cltrans, this.transform.rotation) as GameObject;
-            }
-            else
-            {
-                anim.SetBool(stanim, false);
-            }
-        }
-            //        rb = GetComponent<Rigidbody2D>();
-        
-
-
+        hasCloseWeapon = CloseWeaponIndex != (uint)CloseWeapon.None && WeaponTypeIndex == (uint)WeaponType.Close;
     }
 }
 

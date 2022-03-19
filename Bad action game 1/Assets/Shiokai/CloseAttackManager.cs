@@ -14,7 +14,7 @@ public class CloseAttackManager : MonoBehaviour
    
     [Header("攻撃アニメbat")] private readonly string stanim_bat = "Bat";
     private readonly float coolTime_bat = 0.19f;
-    [SerializeField][Header("当たり判定")] private GameObject clmrk;
+    [SerializeField][Header("当たり判定")] private CloseAttackCollider clmrk;
     private Animator anim = null;
     //    private Rigidbody2D rb = null;
 
@@ -25,7 +25,7 @@ public class CloseAttackManager : MonoBehaviour
     private class CloseWeaponComposition
     {
         public float CoolTime{get; set;}
-        public GameObject ColliderObject{get; set;}
+        public CloseAttackCollider ColliderObject{get; set;}
         public string AnimParam{get; set;}
     }
 
@@ -60,11 +60,15 @@ public class CloseAttackManager : MonoBehaviour
                                             ColliderObject = null,
                                             AnimParam = "",}
         };
+
         if (closeWeapon.ColliderObject != null)
         {
-            var cltrans = transform.position + Vector3.right;
-            // cltrans.x += direction;
-            Instantiate(clmrk, cltrans, transform.rotation);
+            var closeAttackCollider = Instantiate(clmrk, transform);
+            closeAttackCollider.Delay = closeWeapon.CoolTime;
+        }
+        else
+        {
+            Debug.Log("近接武器の当たり判定が設定されていません");
         }
         return closeWeapon;
     }
@@ -76,7 +80,6 @@ public class CloseAttackManager : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        // direction = 1;
         StartCoroutine(AttackCoroutine());
     }
 

@@ -6,7 +6,7 @@ public class WeaponIndexContainer
 {
 
 
-    public static uint CloseWeaponIndex{get; set;} = 0;
+    public static CloseWeapon CurrentCloseWeapon{get; set;} = CloseWeapon.None;
 
     public enum CloseWeapon
     {
@@ -14,7 +14,7 @@ public class WeaponIndexContainer
         Spear,
         Bat
     }
-    public static uint ShootWeaponIndex{get; set;} = 0;
+    public static ShootWeapon CurrentShootWeapon{get; set;} = ShootWeapon.None;
     public enum ShootWeapon
     {
         None,
@@ -23,7 +23,7 @@ public class WeaponIndexContainer
         ExpGun
     }
 
-    public static uint WeaponTypeIndex{get; set;} = 0;
+    public static WeaponType CurrentWeaponType{get; set;} = WeaponType.None;
 
     public enum WeaponType
     {

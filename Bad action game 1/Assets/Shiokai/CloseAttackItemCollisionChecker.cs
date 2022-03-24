@@ -13,8 +13,15 @@ public class CloseAttackItemCollisionChecker : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            WeaponIndexContainer.CloseWeaponIndex = this.CloseWeaponIndex;
-            WeaponIndexContainer.WeaponTypeIndex = (uint)WeaponIndexContainer.WeaponType.Close;
+            WeaponIndexContainer.CurrentCloseWeapon = CloseWeaponIndex switch
+            {
+                // 1
+                (uint)WeaponIndexContainer.CloseWeapon.Spear => WeaponIndexContainer.CloseWeapon.Spear,
+                // 2
+                (uint)WeaponIndexContainer.CloseWeapon.Bat => WeaponIndexContainer.CloseWeapon.Bat,
+                _ => WeaponIndexContainer.CloseWeapon.None,
+            };
+            WeaponIndexContainer.CurrentWeaponType = WeaponIndexContainer.WeaponType.Close;
         }
 
     }

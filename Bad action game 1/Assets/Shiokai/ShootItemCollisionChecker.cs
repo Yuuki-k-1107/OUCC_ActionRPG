@@ -13,8 +13,17 @@ public class ShootItemCollisionChecker : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            WeaponIndexContainer.ShootWeaponIndex = this.ShootWeaponIndex;
-            WeaponIndexContainer.WeaponTypeIndex = (uint)WeaponIndexContainer.WeaponType.Shoot;
+            WeaponIndexContainer.CurrentShootWeapon = ShootWeaponIndex switch
+            {
+                // 1
+                (uint)WeaponIndexContainer.ShootWeapon.Arrow => WeaponIndexContainer.ShootWeapon.Arrow,
+                // 2
+                (uint)WeaponIndexContainer.ShootWeapon.Gun => WeaponIndexContainer.ShootWeapon.Gun,
+                // 3
+                (uint)WeaponIndexContainer.ShootWeapon.ExpGun => WeaponIndexContainer.ShootWeapon.ExpGun,
+                _ => WeaponIndexContainer.ShootWeapon.None,
+            };
+            WeaponIndexContainer.CurrentWeaponType = WeaponIndexContainer.WeaponType.Shoot;
         }
 
     }

@@ -54,16 +54,15 @@ public class ShootManager : MonoBehaviour
 
     private BulletComposition Shoot()
     {
-        uint weaponIndex = ShootWeaponIndex;
-        var bullet = weaponIndex switch
+        var bullet = CurrentShootWeapon switch
         {
-            (uint)ShootWeapon.Arrow => new BulletComposition{CoolTime = cltm_gun,
+            ShootWeapon.Arrow => new BulletComposition{CoolTime = cltm_gun,
                                         BulletObject = bulObj_gun,
                                         AnimParam = stanim_gun,},
-            (uint)ShootWeapon.Gun => new BulletComposition{CoolTime = cltm_arrow,
+            ShootWeapon.Gun => new BulletComposition{CoolTime = cltm_arrow,
                                         BulletObject = bulObj_arrow,
                                         AnimParam = stanim_arrow,},
-            (uint)ShootWeapon.ExpGun => new BulletComposition{CoolTime = cltm_expGun,
+            ShootWeapon.ExpGun => new BulletComposition{CoolTime = cltm_expGun,
                                         BulletObject = bulObj_expGun,
                                         AnimParam = stanim_expGun,},
             _ => new BulletComposition{CoolTime = 0,
@@ -92,7 +91,7 @@ public class ShootManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hasShootWeapon = ShootWeaponIndex != (uint)ShootWeapon.None && WeaponTypeIndex == (uint)WeaponType.Shoot;
+        hasShootWeapon = CurrentShootWeapon != ShootWeapon.None && CurrentWeaponType == WeaponType.Shoot;
     }
 }
 

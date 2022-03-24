@@ -47,13 +47,13 @@ public class CloseAttackManager : MonoBehaviour
 
     private CloseWeaponComposition Attack()
     {
-        uint weaponIndex = CloseWeaponIndex;
-        var closeWeapon = weaponIndex switch
+        // var weaponIndex = currentCloseWeapon;
+        var closeWeapon = CurrentCloseWeapon switch
         {
-            (uint)CloseWeapon.Bat => new CloseWeaponComposition{CoolTime = coolTime_bat,
+            CloseWeapon.Bat => new CloseWeaponComposition{CoolTime = coolTime_bat,
                                                                 ColliderObject = clmrk,
                                                                 AnimParam = stanim_bat},
-            (uint)CloseWeapon.Spear => new CloseWeaponComposition{CoolTime = coolTime_spear,
+            CloseWeapon.Spear => new CloseWeaponComposition{CoolTime = coolTime_spear,
                                                                 ColliderObject = clmrk,
                                                                 AnimParam = stanim_spear},
             _ => new CloseWeaponComposition{CoolTime = 0,
@@ -86,7 +86,7 @@ public class CloseAttackManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hasCloseWeapon = CloseWeaponIndex != (uint)CloseWeapon.None && WeaponTypeIndex == (uint)WeaponType.Close;
+        hasCloseWeapon = CurrentCloseWeapon != CloseWeapon.None && CurrentWeaponType == WeaponType.Close;
     }
 }
 

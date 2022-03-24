@@ -7,56 +7,53 @@ using static WeaponIndexContainer;
 
 public class WeaponChange : MonoBehaviour
 {
-    private uint ChangeCloseWeaponSequence()
+    private CloseWeapon ChangeCloseWeaponSequence()
     {
-        uint lastWeapon = CloseWeaponIndex;
-        // ShootWeaponIndex = (uint)ShootWeapon.None;
+        var lastWeapon = CurrentCloseWeapon;
 
-        uint nextWeapon = lastWeapon switch
+        var nextWeapon = lastWeapon switch
         {
-            (uint)CloseWeapon.None => (uint)CloseWeapon.Spear,
-            (uint)CloseWeapon.Spear => (uint)CloseWeapon.Bat,
-            (uint)CloseWeapon.Bat => (uint)CloseWeapon.Spear,
-            _ => (uint)CloseWeapon.None
+            CloseWeapon.None => CloseWeapon.Spear,
+            CloseWeapon.Spear => CloseWeapon.Bat,
+            CloseWeapon.Bat => CloseWeapon.Spear,
+            _ => CloseWeapon.None
         };
         SetCloseWeapon(nextWeapon);
         Debug.Log("近接武器変えたよ");
         return nextWeapon;
-        // count = CloseWeaponIndex + shootWeaponCount;
     }
 
-    private uint ChangeShootWeaponSequence()
+    private ShootWeapon ChangeShootWeaponSequence()
     {
-        uint lastWeapon = ShootWeaponIndex;
-        // CloseWeaponIndex = (uint)CloseWeapon.None;
+        var lastWeapon = CurrentShootWeapon;
 
-        uint nextWeapon = lastWeapon switch
+        var nextWeapon = lastWeapon switch
         {
-            (uint)ShootWeapon.None => (uint)ShootWeapon.Arrow,
-            (uint)ShootWeapon.Arrow => (uint)ShootWeapon.Gun,
-            (uint)ShootWeapon.Gun => (uint)ShootWeapon.ExpGun,
-            (uint)ShootWeapon.ExpGun => (uint)ShootWeapon.Arrow,
-            _ => (uint)ShootWeapon.None
+            ShootWeapon.None => ShootWeapon.Arrow,
+            ShootWeapon.Arrow => ShootWeapon.Gun,
+            ShootWeapon.Gun => ShootWeapon.ExpGun,
+            ShootWeapon.ExpGun => ShootWeapon.Arrow,
+            _ => ShootWeapon.None
         };
         SetShootWeapon(nextWeapon);
         Debug.Log("遠距離武器変えたよ");
         return nextWeapon;
     }
 
-    private (uint, uint) ChangeWeaponSequence()
+    private (WeaponType, uint) ChangeWeaponSequence()
     {
-        uint lastWeaponType = WeaponTypeIndex;
+        var lastWeaponType = CurrentWeaponType;
         uint lastWeapon = lastWeaponType switch
         {
-            (uint)WeaponType.Close => CloseWeaponIndex,
-            (uint)WeaponType.Shoot => ShootWeaponIndex,
+            WeaponType.Close => (uint)CurrentCloseWeapon,
+            WeaponType.Shoot => (uint)CurrentShootWeapon,
             _ => 0,
         };
 
-        (uint nextWeaponType, uint nextWeapon) = (lastWeaponType, lastWeapon) switch
+        (var nextWeaponType, uint nextWeapon) = (lastWeaponType, lastWeapon) switch
         {
-            ((uint)WeaponType.Close, (uint)CloseWeapon.Bat) => ((uint)WeaponType.Shoot, (uint)ShootWeapon.Arrow),
-            ((uint)WeaponType.Shoot, (uint)ShootWeapon.ExpGun) => ((uint)WeaponType.Close, (uint)CloseWeapon.Spear),
+            (WeaponType.Close, (uint)CloseWeapon.Bat) => (WeaponType.Shoot, (uint)ShootWeapon.Arrow),
+            (WeaponType.Shoot, (uint)ShootWeapon.ExpGun) => (WeaponType.Close, (uint)CloseWeapon.Spear),
             (_, _) => (lastWeaponType, lastWeapon + 1)
         };
         SetWeapon(nextWeaponType, nextWeapon);
@@ -64,39 +61,55 @@ public class WeaponChange : MonoBehaviour
         return (nextWeaponType, nextWeapon);
     }
 
-    private uint ChangeWeaponTypeSequence()
+    private WeaponType ChangeWeaponTypeSequence()
     {
-        uint lastWeapon = WeaponTypeIndex;
-        uint nextWeapon = lastWeapon switch
+        var lastWeapon = CurrentWeaponType;
+        var nextWeapon = lastWeapon switch
         {
-            (uint)WeaponType.Close => (uint)WeaponType.Shoot,
-            (uint)WeaponType.Shoot => (uint)WeaponType.Close,
-            _ => (uint)WeaponType.None
+            WeaponType.Close => WeaponType.Shoot,
+            WeaponType.Shoot => WeaponType.Close,
+            _ => WeaponType.None
         };
-        WeaponTypeIndex = nextWeapon;
+        CurrentWeaponType = nextWeapon;
         return nextWeapon;
     }
 
-    private void SetCloseWeapon(uint index)
+    private void SetCloseWeapon(CloseWeapon closeWeapon)
     {
-        CloseWeaponIndex = index;
-        WeaponTypeIndex = (uint)WeaponType.Close;
+        CurrentCloseWeapon = closeWeapon;
+        CurrentWeaponType = WeaponType.Close;
     }
-    private void SetShootWeapon(uint index)
+    private void SetShootWeapon(ShootWeapon shootWeapon)
     {
-        ShootWeaponIndex = index;
-        WeaponTypeIndex = (uint)WeaponType.Shoot;
+        CurrentShootWeapon = shootWeapon;
+        CurrentWeaponType = WeaponType.Shoot;
     }
-    private void SetWeapon(uint type, uint index)
+    private void SetWeapon(WeaponType type, uint index)
     {
-        WeaponTypeIndex = type;
+        CurrentWeaponType = type;
         switch (type)
         {
             default:
-            case (uint)WeaponType.Close: CloseWeaponIndex = index;
-                                        break;
-            case (uint)WeaponType.Shoot: ShootWeaponIndex = index;
-                                        break;
+            case WeaponType.Close: CurrentCloseWeapon = index switch
+                                    {
+                                        // 1
+                                        (uint)CloseWeapon.Spear => CloseWeapon.Spear,
+                                        // 2
+                                        (uint)CloseWeapon.Bat => CloseWeapon.Bat,
+                                        _ => CloseWeapon.None,
+                                    };
+                                    break;
+            case WeaponType.Shoot: CurrentShootWeapon = index switch
+                                    {
+                                        // 1
+                                        (uint)ShootWeapon.Arrow => ShootWeapon.Arrow,
+                                        // 2
+                                        (uint)ShootWeapon.Gun => ShootWeapon.Gun,
+                                        // 3
+                                        (uint)ShootWeapon.ExpGun => ShootWeapon.ExpGun,
+                                        _ => ShootWeapon.None,
+                                    };
+                                    break;
         }
     }
     

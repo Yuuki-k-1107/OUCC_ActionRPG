@@ -31,7 +31,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1892300088276350506}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1892300088213634219
 BoxCollider2D:
@@ -127,8 +127,6 @@ Transform:
   m_LocalPosition: {x: -5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1892300090211846235}
-  - {fileID: 1892300089585975768}
   - {fileID: 1892300088213634230}
   - {fileID: 1892300088753638854}
   m_Father: {fileID: 0}
@@ -311,17 +309,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565a016138404d34198901655a3376b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cltm_gun: 0.3
   bulObj_gun: {fileID: 3210991879228686993, guid: 91d1079ac6778514db1a9d0738d70c65,
     type: 3}
-  stanim_gun: ShotGun
-  cltm_arrow: 0.7
   bulObj_arrow: {fileID: 8981239517265870560, guid: 60670a833d876a34b806963571fea72b,
     type: 3}
-  stanim_arrow: ShotBow
   stmrk: {fileID: 1892300088753638855}
-  stanim_expGun: ShotExpGun
-  cltm_expGun: 0.5
   bulObj_expGun: {fileID: 7768657869945406586, guid: e76bc8f369f33524faad7b36f7db1bac,
     type: 3}
 --- !u!114 &6381258997718666355
@@ -336,9 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7827f1736e7842d41b3547d288bacc76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stanim_spear: Spear
-  stanim_bat: Bat
-  clmrk: {fileID: 336576323085331828, guid: ae8b1e6304c47f64080e3270c8cbf8c8, type: 3}
+  clmrk: {fileID: -9035699830625647788, guid: ae8b1e6304c47f64080e3270c8cbf8c8, type: 3}
 --- !u!114 &8445851355988048581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,119 +369,5 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 1892300088276350506}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1892300089585975590
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1892300089585975768}
-  - component: {fileID: 1892300089585975769}
-  m_Layer: 0
-  m_Name: SpearCollider
-  m_TagString: spear
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1892300089585975768
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1892300089585975590}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.02, y: -0.23, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1892300088276350506}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1892300089585975769
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1892300089585975590}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.7, y: 0.3}
-  m_EdgeRadius: 0.06
---- !u!1 &1892300090211846233
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1892300090211846235}
-  - component: {fileID: 1892300090211846232}
-  m_Layer: 0
-  m_Name: BatCollider
-  m_TagString: bat
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1892300090211846235
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1892300090211846233}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.78, y: -0.06, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1892300088276350506}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1892300090211846232
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1892300090211846233}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0.06

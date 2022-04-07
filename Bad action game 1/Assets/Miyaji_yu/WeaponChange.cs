@@ -2,19 +2,122 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using static WeaponIndexContainer;
+
 
 public class WeaponChange : MonoBehaviour
 {
+    private CloseWeapon ChangeCloseWeaponSequence()
+    {
+        var lastWeapon = CurrentCloseWeapon;
+
+        var nextWeapon = lastWeapon switch
+        {
+            CloseWeapon.None => CloseWeapon.Spear,
+            CloseWeapon.Spear => CloseWeapon.Bat,
+            CloseWeapon.Bat => CloseWeapon.Spear,
+            _ => CloseWeapon.None
+        };
+        SetCloseWeapon(nextWeapon);
+        Debug.Log("近接武器変えたよ");
+        return nextWeapon;
+    }
+
+    private ShootWeapon ChangeShootWeaponSequence()
+    {
+        var lastWeapon = CurrentShootWeapon;
+
+        var nextWeapon = lastWeapon switch
+        {
+            ShootWeapon.None => ShootWeapon.Arrow,
+            ShootWeapon.Arrow => ShootWeapon.Gun,
+            ShootWeapon.Gun => ShootWeapon.ExpGun,
+            ShootWeapon.ExpGun => ShootWeapon.Arrow,
+            _ => ShootWeapon.None
+        };
+        SetShootWeapon(nextWeapon);
+        Debug.Log("遠距離武器変えたよ");
+        return nextWeapon;
+    }
+
+    private (WeaponType, uint) ChangeWeaponSequence()
+    {
+        var lastWeaponType = CurrentWeaponType;
+        uint lastWeapon = lastWeaponType switch
+        {
+            WeaponType.Close => (uint)CurrentCloseWeapon,
+            WeaponType.Shoot => (uint)CurrentShootWeapon,
+            _ => 0,
+        };
+
+        (var nextWeaponType, uint nextWeapon) = (lastWeaponType, lastWeapon) switch
+        {
+            (WeaponType.Close, (uint)CloseWeapon.Bat) => (WeaponType.Shoot, (uint)ShootWeapon.Arrow),
+            (WeaponType.Shoot, (uint)ShootWeapon.ExpGun) => (WeaponType.Close, (uint)CloseWeapon.Spear),
+            (_, _) => (lastWeaponType, lastWeapon + 1)
+        };
+        SetWeapon(nextWeaponType, nextWeapon);
+        Debug.Log("武器変えたよ");
+        return (nextWeaponType, nextWeapon);
+    }
+
+    private WeaponType ChangeWeaponTypeSequence()
+    {
+        var lastWeapon = CurrentWeaponType;
+        var nextWeapon = lastWeapon switch
+        {
+            WeaponType.Close => WeaponType.Shoot,
+            WeaponType.Shoot => WeaponType.Close,
+            _ => WeaponType.None
+        };
+        CurrentWeaponType = nextWeapon;
+        return nextWeapon;
+    }
+
+    private void SetCloseWeapon(CloseWeapon closeWeapon)
+    {
+        CurrentCloseWeapon = closeWeapon;
+        CurrentWeaponType = WeaponType.Close;
+    }
+    private void SetShootWeapon(ShootWeapon shootWeapon)
+    {
+        CurrentShootWeapon = shootWeapon;
+        CurrentWeaponType = WeaponType.Shoot;
+    }
+    private void SetWeapon(WeaponType type, uint index)
+    {
+        CurrentWeaponType = type;
+        switch (type)
+        {
+            default:
+            case WeaponType.Close: CurrentCloseWeapon = index switch
+                                    {
+                                        // 1
+                                        (uint)CloseWeapon.Spear => CloseWeapon.Spear,
+                                        // 2
+                                        (uint)CloseWeapon.Bat => CloseWeapon.Bat,
+                                        _ => CloseWeapon.None,
+                                    };
+                                    break;
+            case WeaponType.Shoot: CurrentShootWeapon = index switch
+                                    {
+                                        // 1
+                                        (uint)ShootWeapon.Arrow => ShootWeapon.Arrow,
+                                        // 2
+                                        (uint)ShootWeapon.Gun => ShootWeapon.Gun,
+                                        // 3
+                                        (uint)ShootWeapon.ExpGun => ShootWeapon.ExpGun,
+                                        _ => ShootWeapon.None,
+                                    };
+                                    break;
+        }
+    }
     
-    [Header("遠距離武器の数")] public static int shootWeaponCount = 3;
-    [Header("近距離武器の数")] public static int closeWeaponCount = 2;
-    private int weaponCount;
-    public static int count;
 
     // Start is called before the first frame update
     void Start()
     {
-        weaponCount = shootWeaponCount + closeWeaponCount;
+
     }
 
     // Update is called once per frame
@@ -22,49 +125,15 @@ public class WeaponChange : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            count++;
-            if(count > weaponCount)
-            {
-                count = 1;
-            }
-            if (count <= shootWeaponCount)
-            {
-                WeaponIndexContainer.ShootWeaponIndex = count;
-                WeaponIndexContainer.CloseWeaponIndex = 0;
-            }
-            else
-            {
-                WeaponIndexContainer.CloseWeaponIndex = count - shootWeaponCount;
-                WeaponIndexContainer.ShootWeaponIndex = 0;
-            }
+            ChangeWeaponSequence();
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if(WeaponIndexContainer.CloseWeaponIndex > 0)
-            {
-                WeaponIndexContainer.CloseWeaponIndex = 0;
-            }
-            WeaponIndexContainer.ShootWeaponIndex++;
-            Debug.Log("武器変えたよ");
-            if(WeaponIndexContainer.ShootWeaponIndex > shootWeaponCount)
-            {
-                WeaponIndexContainer.ShootWeaponIndex = 1;
-            }
-            count = WeaponIndexContainer.ShootWeaponIndex;
+            ChangeShootWeaponSequence();
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (WeaponIndexContainer.ShootWeaponIndex > 0)
-            {
-                WeaponIndexContainer.ShootWeaponIndex = 0;
-            }
-            WeaponIndexContainer.CloseWeaponIndex++;
-            Debug.Log("武器変えたよ");
-            if (WeaponIndexContainer.CloseWeaponIndex > closeWeaponCount)
-            {
-                WeaponIndexContainer.CloseWeaponIndex = 1;
-            }
-            count = WeaponIndexContainer.CloseWeaponIndex + shootWeaponCount;
+            ChangeCloseWeaponSequence();
         }
     }
 }

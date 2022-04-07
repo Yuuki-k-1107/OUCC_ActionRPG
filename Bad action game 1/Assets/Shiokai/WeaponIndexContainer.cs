@@ -6,8 +6,31 @@ public class WeaponIndexContainer
 {
 
 
-    public static int CloseWeaponIndex = 0;
-    public static int ShootWeaponIndex = 0;
+    public static CloseWeapon CurrentCloseWeapon{get; set;} = CloseWeapon.None;
+
+    public enum CloseWeapon
+    {
+        None,
+        Spear,
+        Bat
+    }
+    public static ShootWeapon CurrentShootWeapon{get; set;} = ShootWeapon.None;
+    public enum ShootWeapon
+    {
+        None,
+        Arrow,
+        Gun,
+        ExpGun
+    }
+
+    public static WeaponType CurrentWeaponType{get; set;} = WeaponType.None;
+
+    public enum WeaponType
+    {
+        None,
+        Close,
+        Shoot
+    }
 
 
 }
